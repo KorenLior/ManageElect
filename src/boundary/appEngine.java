@@ -21,4 +21,8 @@ public class appEngine {
 			main.setVisible(true);
 		}
 	}
+	public static String loadElector(int electorId){
+		String electorInfo = ctrlInterface.getElector(electorId);
+		return electorInfo;
+	}
 }

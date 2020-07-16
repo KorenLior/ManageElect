@@ -21,9 +21,9 @@ import javax.swing.JTextPane;
 public class BdrElectorInfoForm extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField tfElectorId;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField tfE;
+	private JTextField tfFrom;
+	private JTextField tfUntil;
 
 	/**
 	 * Launch the application.
@@ -46,63 +46,80 @@ public class BdrElectorInfoForm extends JDialog {
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
-		tfElectorId = new JTextField();
-		tfElectorId.setBounds(5, 6, 86, 20);
-		tfElectorId.setText("ElectorID");
-		tfElectorId.setColumns(10);
+		tfE = new JTextField();
+		tfE.setBounds(5, 6, 86, 20);
+		tfE.setText("ElectorID");
+		tfE.setColumns(10);
 		JButton btnLoad = new JButton("Load Elector");
 		btnLoad.setBounds(97, 5, 91, 23);
+		
+		
+		
+		
+		JLabel lblElector = new JLabel("Elector Info");
+		lblElector.setBounds(5, 34, 320, 55);
+		
 		btnLoad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				int electorId = 0;
+				try{
+					
+				}
+				catch(Exception loadFail) {
+					
+				}
+				String result = appEngine.loadElector(electorId);
+				if (result!=null){
+					lblElector.setText(result);
+				}
 			}
 		});
 		
-		JLabel lblElectorInfo = new JLabel("Elector Info");
-		lblElectorInfo.setBounds(5, 34, 320, 55);
+		
 		
 		JCheckBox chckbxAnswered = new JCheckBox("Elector Answered");
 		chckbxAnswered.setBounds(5, 107, 109, 23);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(144, 136, 86, 22);
-		comboBox.setEnabled(false);
+		JComboBox comboBoxPlans = new JComboBox();
+		comboBoxPlans.setBounds(144, 136, 86, 22);
+		comboBoxPlans.setEnabled(false);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(144, 164, 86, 22);
-		comboBox_1.setEnabled(false);
+		JComboBox comboBoxSupports = new JComboBox();
+		comboBoxSupports.setBounds(144, 164, 86, 22);
+		comboBoxSupports.setEnabled(false);
 		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setBounds(144, 192, 86, 22);
-		comboBox_2.setEnabled(false);
+		JComboBox comboBoxInterested = new JComboBox();
+		comboBoxInterested.setBounds(144, 192, 86, 22);
+		comboBoxInterested.setEnabled(false);
 		
-		JCheckBox chckbxRideReq = new JCheckBox("Ride Required");
-		chckbxRideReq.setBounds(11, 228, 93, 23);
-		chckbxRideReq.setEnabled(false);
+		JCheckBox chckbxRR = new JCheckBox("Ride Required");
+		chckbxRR.setBounds(11, 228, 93, 23);
+		chckbxRR.setEnabled(false);
 		
-		textField = new JTextField();
-		textField.setBounds(144, 258, 86, 20);
-		textField.setEnabled(false);
-		textField.setColumns(10);
+		tfFrom = new JTextField();
+		tfFrom.setBounds(144, 258, 86, 20);
+		tfFrom.setEnabled(false);
+		tfFrom.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(144, 284, 86, 20);
-		textField_1.setEnabled(false);
-		textField_1.setColumns(10);
+		tfUntil = new JTextField();
+		tfUntil.setBounds(144, 284, 86, 20);
+		tfUntil.setEnabled(false);
+		tfUntil.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Plans to vote");
 		lblNewLabel.setBounds(45, 140, 73, 14);
 		contentPanel.setLayout(null);
 		contentPanel.add(chckbxAnswered);
-		contentPanel.add(comboBox);
-		contentPanel.add(comboBox_1);
-		contentPanel.add(comboBox_2);
-		contentPanel.add(chckbxRideReq);
-		contentPanel.add(textField);
-		contentPanel.add(textField_1);
+		contentPanel.add(comboBoxPlans);
+		contentPanel.add(comboBoxSupports);
+		contentPanel.add(comboBoxInterested);
+		contentPanel.add(chckbxRR);
+		contentPanel.add(tfFrom);
+		contentPanel.add(tfUntil);
 		contentPanel.add(lblNewLabel);
-		contentPanel.add(tfElectorId);
+		contentPanel.add(tfE);
 		contentPanel.add(btnLoad);
-		contentPanel.add(lblElectorInfo);
+		contentPanel.add(lblElector);
 		
 		JLabel lblNewLabel_1 = new JLabel("Supports the party");
 		lblNewLabel_1.setBounds(33, 168, 101, 14);
@@ -130,9 +147,9 @@ public class BdrElectorInfoForm extends JDialog {
 				getRootPane().setDefaultButton(btnSave);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
+				JButton btnCancel = new JButton("Cancel");
+				btnCancel.setActionCommand("Cancel");
+				buttonPane.add(btnCancel);
 			}
 		}
 	}
