@@ -107,11 +107,12 @@ public class CtrlInterface {
 		//System.out.println("control.getElector res= "+res);
 		return res;
 	}
-	public void contactElector(int loadedId, String date, String gotAnswer, String planToVote, String supportTheParty,
+	
+	public void contactElector(int electorId, String date, String gotAnswer, String planToVote, String supportTheParty,
 			String interestInClass, String needRide, String pickupFrom, String pickupTo) {
 		if (loginId != -1)
 		{
-			CtrlContactElector ctrlContactElector = new CtrlContactElector(loginId, loadedId,
+			CtrlContactElector ctrlContactElector = new CtrlContactElector(loginId, electorId,
 				gotAnswer, planToVote, supportTheParty, interestInClass,
 				needRide, pickupFrom, pickupTo,date);
 		}

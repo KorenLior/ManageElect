@@ -15,6 +15,8 @@ import javax.swing.JTable;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class BdrMain extends JFrame {
 
@@ -65,21 +67,26 @@ public class BdrMain extends JFrame {
 		
 		table = new JTable();
 		
-		JButton btnNewButton = new JButton("New button");
+		JButton btnUpdate = new JButton("Update Contact");
 		
 		textField = new JTextField();
 		textField.setColumns(10);
 		
-		JButton btnNewButton_1 = new JButton("New button");
+		JButton btnInfo = new JButton("Contact Elector");
+		btnInfo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				appEngine.popUpElectorInfo();
+			}
+		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnNewButton)
+					.addComponent(btnUpdate)
 					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addComponent(btnNewButton_1)
+					.addComponent(btnInfo)
 					.addContainerGap(153, Short.MAX_VALUE))
 				.addComponent(table, GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)
 		);
@@ -88,8 +95,8 @@ public class BdrMain extends JFrame {
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnNewButton)
-						.addComponent(btnNewButton_1))
+						.addComponent(btnUpdate)
+						.addComponent(btnInfo))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(table, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
 		);

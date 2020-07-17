@@ -12,6 +12,8 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JCheckBox;
@@ -24,6 +26,7 @@ public class BdrElectorInfoForm extends JDialog {
 	private JTextField tfE;
 	private JTextField tfFrom;
 	private JTextField tfUntil;
+	private int electorId = -1;
 
 	/**
 	 * Launch the application.
@@ -61,16 +64,19 @@ public class BdrElectorInfoForm extends JDialog {
 		
 		btnLoad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				int electorId = 0;
+				int electorId = -1;
 				try{
-					
+					String idTxt = tfE.getText();
+					electorId = Integer.parseInt(idTxt);
 				}
 				catch(Exception loadFail) {
-					
+					System.out.println("elector ID not parsed");
 				}
 				String result = appEngine.loadElector(electorId);
 				if (result!=null){
 					lblElector.setText(result);
+					setId(electorId);
+					
 				}
 			}
 		});
@@ -79,6 +85,7 @@ public class BdrElectorInfoForm extends JDialog {
 		
 		JCheckBox chckbxAnswered = new JCheckBox("Elector Answered");
 		chckbxAnswered.setBounds(5, 107, 109, 23);
+		
 		
 		JComboBox comboBoxPlans = new JComboBox();
 		comboBoxPlans.setBounds(144, 136, 86, 22);
@@ -97,17 +104,21 @@ public class BdrElectorInfoForm extends JDialog {
 		chckbxRR.setEnabled(false);
 		
 		tfFrom = new JTextField();
+		tfFrom.setText("08:00");
 		tfFrom.setBounds(144, 258, 86, 20);
 		tfFrom.setEnabled(false);
 		tfFrom.setColumns(10);
 		
 		tfUntil = new JTextField();
+		tfUntil.setText("22:00");
 		tfUntil.setBounds(144, 284, 86, 20);
 		tfUntil.setEnabled(false);
 		tfUntil.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Plans to vote");
 		lblNewLabel.setBounds(45, 140, 73, 14);
+		
+		
 		contentPanel.setLayout(null);
 		contentPanel.add(chckbxAnswered);
 		contentPanel.add(comboBoxPlans);
@@ -120,6 +131,26 @@ public class BdrElectorInfoForm extends JDialog {
 		contentPanel.add(tfE);
 		contentPanel.add(btnLoad);
 		contentPanel.add(lblElector);
+		
+		chckbxAnswered.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				comboBoxPlans.setEnabled(true);
+				comboBoxSupports.setEnabled(true);
+				comboBoxInterested.setEnabled(true);
+				chckbxRR.setEnabled(true);
+			}
+		});
+		chckbxRR.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				tfFrom.setEnabled(true);
+				tfUntil.setEnabled(true);
+			}
+		});
+		
+		
 		
 		JLabel lblNewLabel_1 = new JLabel("Supports the party");
 		lblNewLabel_1.setBounds(33, 168, 101, 14);
@@ -136,12 +167,39 @@ public class BdrElectorInfoForm extends JDialog {
 		JLabel lblNewLabel_4 = new JLabel("Until");
 		lblNewLabel_4.setBounds(108, 287, 26, 14);
 		contentPanel.add(lblNewLabel_4);
+		
+		
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton btnSave = new JButton("Save Elector Info");
+				btnSave.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");  
+						LocalDateTime now = LocalDateTime.now();
+						
+						String ans = "no";
+						String rr = "no";
+						String from,until;
+						from = until = null;
+						if (chckbxAnswered.isSelected()) {
+							ans = "yes";
+							if (chckbxRR.isSelected()) {
+								rr = "yes";
+								from = tfFrom.getText();
+								until = tfUntil.getText();
+							}
+						}
+						if (electorId !=-1) {
+						appEngine.ctrlInterface.contactElector(electorId, dtf.format(now), ans, 
+								(String)comboBoxPlans.getSelectedItem(),(String)comboBoxSupports.getSelectedItem(), 
+								(String)comboBoxInterested.getSelectedItem(), rr, 
+								from, until);
+						}
+					}
+				});
 				btnSave.setActionCommand("OK");
 				buttonPane.add(btnSave);
 				getRootPane().setDefaultButton(btnSave);
@@ -152,5 +210,9 @@ public class BdrElectorInfoForm extends JDialog {
 				buttonPane.add(btnCancel);
 			}
 		}
+	}
+	
+	private void setId(int id) {
+		electorId = id;
 	}
 }

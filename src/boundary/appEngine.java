@@ -1,10 +1,12 @@
 package boundary;
 
 import control.CtrlInterface;
+
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 
 public class appEngine {
-	private static CtrlInterface ctrlInterface = new CtrlInterface();
+	static CtrlInterface ctrlInterface = new CtrlInterface();
 	
 	private static JFrame main;
 	public static void main(String[] args) {
@@ -20,6 +22,11 @@ public class appEngine {
 			main = new BdrMain();
 			main.setVisible(true);
 		}
+	}
+	
+	public static void popUpElectorInfo() {
+		JDialog popup = new BdrElectorInfoForm();
+		popup.setVisible(true);
 	}
 	public static String loadElector(int electorId){
 		String electorInfo = ctrlInterface.getElector(electorId);
