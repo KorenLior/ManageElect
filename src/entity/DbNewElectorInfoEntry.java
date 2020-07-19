@@ -63,9 +63,9 @@ public class DbNewElectorInfoEntry {
 	public void SetEntry(){
 		 try {
 			 Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-			 try (Connection conn = DriverManager.getConnection(ConstsDbNewElectorInfo.CONN_STR);
+			 try (Connection conn = DriverManager.getConnection(ConstsDbManageElect.CONN_STR);
 					 
-				CallableStatement stmt = conn.prepareCall(ConstsDbNewElectorInfo.SQL_INS_ELECTORINFO)) {
+				CallableStatement stmt = conn.prepareCall(ConstsDbManageElect.SQL_INS_ELECTORINFO)) {
 
 	/* (CallDate, GotAnswer, PlanToVote, SupportTheParty, InterestInClass, NeedRide, PickupFrom, PickupTo, ElectorId, EmployeeId)*/
 			

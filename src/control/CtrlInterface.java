@@ -118,5 +118,9 @@ public class CtrlInterface {
 		}
 		
 	}
+	
+	public void electorPhoneUpdate(int electorId, int phoneNum) {
+		(new CtrlElector()).updatePhone(electorId, phoneNum);
+	}
 
 }

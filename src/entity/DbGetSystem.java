@@ -15,7 +15,7 @@ public class DbGetSystem {
 	public DbGetSystem() {
 		// TODO Auto-generated constructor stub
 	}
-	private ConstsDbSystem dbConsts = new ConstsDbSystem();
+	private ConstsDbManageElect dbConsts = new ConstsDbManageElect();
 	
 	
 	
@@ -29,9 +29,9 @@ public class DbGetSystem {
 		String electionCalendarEnd = null;
 		 try {
 			 Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-			 try (Connection conn = DriverManager.getConnection(ConstsDbSystem.CONN_STR);
+			 try (Connection conn = DriverManager.getConnection(ConstsDbManageElect.CONN_STR);
 			
-			 PreparedStatement stmt = conn.prepareStatement(ConstsDbSystem.SQL_SEL_SYSTEM);
+			 PreparedStatement stmt = conn.prepareStatement(ConstsDbManageElect.SQL_SEL_SYSTEM);
 			
 			 ResultSet rs = stmt.executeQuery()) {
 					rs.next();

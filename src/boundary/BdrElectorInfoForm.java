@@ -89,14 +89,22 @@ public class BdrElectorInfoForm extends JDialog {
 		
 		JComboBox comboBoxPlans = new JComboBox();
 		comboBoxPlans.setBounds(144, 136, 86, 22);
+		comboBoxPlans.addItem("Yes");
+		comboBoxPlans.addItem("No");
+		comboBoxPlans.addItem("Undecided");
 		comboBoxPlans.setEnabled(false);
 		
 		JComboBox comboBoxSupports = new JComboBox();
 		comboBoxSupports.setBounds(144, 164, 86, 22);
+		comboBoxSupports.addItem("Yes");
+		comboBoxSupports.addItem("No");
+		comboBoxSupports.addItem("Undecided");
 		comboBoxSupports.setEnabled(false);
 		
 		JComboBox comboBoxInterested = new JComboBox();
 		comboBoxInterested.setBounds(144, 192, 86, 22);
+		comboBoxInterested.addItem("Yes");
+		comboBoxInterested.addItem("No");
 		comboBoxInterested.setEnabled(false);
 		
 		JCheckBox chckbxRR = new JCheckBox("Ride Required");

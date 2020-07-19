@@ -18,9 +18,9 @@ public class DbGetBranchList {
 		 ArrayList<Branch> results = new ArrayList<Branch>();
 		 try {
 		 Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-		 try (Connection conn = DriverManager.getConnection(ConstsDbBranch.CONN_STR);
+		 try (Connection conn = DriverManager.getConnection(ConstsDbManageElect.CONN_STR);
 
-		 PreparedStatement stmt = conn.prepareStatement(ConstsDbBranch.SQL_SEL_BRANCHES);
+		 PreparedStatement stmt = conn.prepareStatement(ConstsDbManageElect.SQL_SEL_BRANCHES);
 
 		 ResultSet rs = stmt.executeQuery()) {
 

@@ -1,5 +1,6 @@
 package entity;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -7,17 +8,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class DbGetElectorList {
+public class DbElectors {
 
-	public DbGetElectorList() {
+	public DbElectors() {
 		// TODO Auto-generated constructor stub
 	}
 	public ArrayList<Elector> getElectors() {
 		 ArrayList<Elector> results = new ArrayList<Elector>();
 		 try {
 		 Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-		 try (Connection conn = DriverManager.getConnection(ConstsDbBranch.CONN_STR);
-		 PreparedStatement stmt = conn.prepareStatement(ConstsDbElector.SQL_SEL_ELECTOR);
+		 try (Connection conn = DriverManager.getConnection(ConstsDbManageElect.CONN_STR);
+		 PreparedStatement stmt = conn.prepareStatement(ConstsDbManageElect.SQL_SEL_ELECTOR);
 		 ResultSet rs = stmt.executeQuery()) {
 			 while (rs.next()) {
 				 Elector res = readFromDb(rs);
@@ -38,9 +39,9 @@ public class DbGetElectorList {
 		ArrayList<Elector> results = new ArrayList<Elector>();
 		 try {
 		 Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-		 try (Connection conn = DriverManager.getConnection(ConstsDbBranch.CONN_STR);
+		 try (Connection conn = DriverManager.getConnection(ConstsDbManageElect.CONN_STR);
 
-		 PreparedStatement stmt = conn.prepareStatement(ConstsDbElector.SQL_SEL_ELECTOR_BALLOT
+		 PreparedStatement stmt = conn.prepareStatement(ConstsDbManageElect.SQL_SEL_ELECTOR_BALLOT
 				 + String.valueOf(ballotNum));
 
 		 ResultSet rs = stmt.executeQuery()) {
@@ -66,9 +67,9 @@ public class DbGetElectorList {
 		 Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 		 //System.out.println(ConstsDbElector.SQL_SEL_ELECTOR_ID
 		 //+ electorId);
-		 try (Connection conn = DriverManager.getConnection(ConstsDbBranch.CONN_STR);
+		 try (Connection conn = DriverManager.getConnection(ConstsDbManageElect.CONN_STR);
 				 
-		 PreparedStatement stmt = conn.prepareStatement(ConstsDbElector.SQL_SEL_ELECTOR_ID
+		 PreparedStatement stmt = conn.prepareStatement(ConstsDbManageElect.SQL_SEL_ELECTOR_ID
 				 + electorId);
 
 		 ResultSet rs = stmt.executeQuery()) {
@@ -117,5 +118,32 @@ public class DbGetElectorList {
 				System.out.println("DbGetElector.readFromDd Failure");
 			}
 			 return result;
+	}
+	
+	
+	public void updatePhone(int electorId, int phoneNum)
+	{
+		try {
+			 //System.out.println("here1" + ballotNum + votedFor+isValid+employeeId);
+			 Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+			 try (Connection conn = DriverManager.getConnection(ConstsDbManageElect.CONN_STR);
+					 
+				CallableStatement stmt = conn.prepareCall(ConstsDbManageElect.SQL_UPDATE_ELECTOR_PHONE)) {
+
+			
+		int i = 1;
+
+		stmt.setInt(i++, phoneNum);
+		stmt.setInt(i++, electorId);
+
+		 stmt.executeUpdate();
+		 } catch (SQLException e) {
+			 System.out.println("DbCloseBallot Failure2");
+		 e.printStackTrace();
+		 }
+		 } catch (ClassNotFoundException e) {
+			 System.out.println("DbCloseBallot ClassNotFound Failure2");
+		 e.printStackTrace();
+		 }
 	}
 }

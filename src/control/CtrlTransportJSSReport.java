@@ -17,7 +17,7 @@ public class CtrlTransportJSSReport {
 	JFrame frame = new JFrame("Customer Orders Report");
 	try {
 	Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-	try (Connection conn = DriverManager.getConnection(entity.ConstsDbElector.CONN_STR)){
+	try (Connection conn = DriverManager.getConnection(entity.ConstsDbManageElect.CONN_STR)){
 	JasperPrint print = JasperFillManager.fillReport(
 	getClass().getResourceAsStream("/boundary/RptTransportation.jasper"),
 	 new HashMap<String, Object>(), conn);

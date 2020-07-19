@@ -1,12 +1,12 @@
 package control;
 
-import entity.DbGetElectorList;
+import entity.DbElectors;
 import entity.Elector;
 
 class CtrlElector {
 	
 	public int getElectorPhone(int id) {
-		Elector res = (new DbGetElectorList()).getElector(id);
+		Elector res = (new DbElectors()).getElector(id);
 		if (res==null)
 		{
 			return 0;
@@ -16,7 +16,7 @@ class CtrlElector {
 	}
 	
 	public String getElectorName(int id) {
-		Elector res = (new DbGetElectorList()).getElector(id);
+		Elector res = (new DbElectors()).getElector(id);
 		if (res==null)
 		{
 			return "";
@@ -26,7 +26,7 @@ class CtrlElector {
 	}
 	
 	public String getElectorAddress(int id) {
-		Elector res = (new DbGetElectorList()).getElector(id);
+		Elector res = (new DbElectors()).getElector(id);
 		if (res==null)
 		{
 			return "";
@@ -36,13 +36,22 @@ class CtrlElector {
 	}
 	
 	public String getElectorInfo(int id) {
-		Elector res = (new DbGetElectorList()).getElector(id);
+		Elector res = (new DbElectors()).getElector(id);
 		if (res==null)
 		{
 			return "";
 		}
 		String result = res.toString();
 		return result;
+	}
+	
+	public void updatePhone(int id, int phoneNum) {
+		try {
+			(new DbElectors()).updatePhone(id, phoneNum); 
+		}
+		catch (Exception e) {
+			System.out.println("Elector phone update failure");
+		}
 	}
 	
 }

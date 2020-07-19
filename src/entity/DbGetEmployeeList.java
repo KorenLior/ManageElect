@@ -12,7 +12,7 @@ public class DbGetEmployeeList {
 	public DbGetEmployeeList() {
 		// TODO Auto-generated constructor stub
 	}
-	ConstsDbEmployee dbConsts = new ConstsDbEmployee();
+	ConstsDbManageElect dbConsts = new ConstsDbManageElect();
 	
 	
 	
@@ -20,9 +20,9 @@ public class DbGetEmployeeList {
 		 ArrayList<Employee> results = new ArrayList<Employee>();
 		 try {
 		 Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-		 try (Connection conn = DriverManager.getConnection(ConstsDbEmployee.CONN_STR);
+		 try (Connection conn = DriverManager.getConnection(ConstsDbManageElect.CONN_STR);
 
-		 PreparedStatement stmt = conn.prepareStatement(ConstsDbEmployee.SQL_SEL_EMPLOYEES);
+		 PreparedStatement stmt = conn.prepareStatement(ConstsDbManageElect.SQL_SEL_EMPLOYEES);
 
 		 ResultSet rs = stmt.executeQuery()) {
 
