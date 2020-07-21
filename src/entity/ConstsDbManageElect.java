@@ -13,6 +13,8 @@ public class ConstsDbManageElect {
 	public static final String SQL_INS_ELECTORINFO =  "{ call QRYNEWELECTORINFO(?,?,?,?,?,?,?,?,?,?) }";
 	public static final String SQL_SEL_SYSTEM = "SELECT * FROM TblSystem";
 	public static final String SQL_UPDATE_ELECTOR_PHONE =  "{ call QryUpdateElectorPhone(?,?) }";
+	public static final String SQL_SEL_DAYPOSITIONS = "SELECT * FROM TblElectionDayPosition";
+	public static final String SQL_INS_DAYPOSITION =  "{ call QryNewElectionDayPosition(?,?,?,?,?,?) }";
 	private static String getDBPath() {
 		 try {
 		String path = ConstsDbManageElect.class.getProtectionDomain().getCodeSource().getLocation().getPath();

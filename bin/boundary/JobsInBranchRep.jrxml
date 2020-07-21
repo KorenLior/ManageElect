@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="JobsInBranchRep" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2f6e4db4-9f8f-4ffe-9759-6e1fd142f492">
+	<property name="template.type" value="columnar"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value=" ManageElect Data Adapter"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="187"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="808"/>
+	<style name="Title" forecolor="#000000" fontName="Times New Roman" fontSize="50" isBold="false"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="Branch" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[1111]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT `TblElectionDayPosition`.`JobID`,
+	`TblElectionDayPosition`.`StartHour`,
+	`TblElectionDayPosition`.`EndHour`,
+	`TblElectionDayPosition`.`Role`,
+	`TblElectionDayPosition`.`BallotNum`,
+	`TblElectionDayPosition`.`EmpID1`,
+	`TblElectionDayPosition`.`EmpID2`
+FROM `TblEmployee`
+	RIGHT JOIN `TblElectionDayPosition` ON 
+	 `TblEmployee`.`ID` = `TblElectionDayPosition`.`EmpID1` 
+WHERE 
+	 `TblEmployee`.`BranchNum` = $P{Branch} 
+GROUP BY `TblElectionDayPosition`.`JobID`,
+	`TblElectionDayPosition`.`StartHour`,
+	`TblElectionDayPosition`.`EndHour`,
+	`TblElectionDayPosition`.`Role`,
+	`TblElectionDayPosition`.`BallotNum`,
+	`TblElectionDayPosition`.`EmpID1`,
+	`TblElectionDayPosition`.`EmpID2`]]>
+	</queryString>
+	<field name="JobID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="JobID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="TblElectionDayPosition"/>
+	</field>
+	<field name="StartHour" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="StartHour"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="TblElectionDayPosition"/>
+	</field>
+	<field name="EndHour" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="EndHour"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="TblElectionDayPosition"/>
+	</field>
+	<field name="Role" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Role"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="TblElectionDayPosition"/>
+	</field>
+	<field name="BallotNum" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="BallotNum"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="TblElectionDayPosition"/>
+	</field>
+	<field name="EmpID1" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="EmpID1"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="TblElectionDayPosition"/>
+	</field>
+	<field name="EmpID2" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="EmpID2"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="TblElectionDayPosition"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="113" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="4" y="50" width="553" height="60" uuid="f49d68fd-a2c7-44ec-a5fc-9300d10c85a1"/>
+				<textElement>
+					<font size="40" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Election Day Roles in ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="380" y="60" width="100" height="30" uuid="db96ce68-3900-4098-a461-bc31f07e798f"/>
+				<textElement>
+					<font size="20" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Branch}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.HorizontalRowLayout"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement x="0" y="0" width="81" height="24" uuid="092dc1be-88ec-4996-bd36-3d1414f50258"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Job Key]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="81" y="0" width="79" height="24" uuid="1727cdb8-31db-4ab2-ae6d-51a1c716039a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[From]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="0" width="79" height="24" uuid="c5d5dc35-79c9-4f7e-bed0-b2ef670fc0e8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Until]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="239" y="0" width="79" height="24" uuid="aefcec48-0ed0-4b77-b6d1-5cf5d61e4d39"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Role]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="318" y="0" width="79" height="24" uuid="e75bcd69-2436-4ce4-ad30-046f8c93ff9a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ballot]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="397" y="0" width="79" height="24" uuid="5abdedb5-a6c9-47a6-a684-22b572d0c486"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Employee1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="476" y="0" width="79" height="24" uuid="32e5a57a-750f-4f9b-a6ce-b86dc001c450"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Employee2]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="81" height="30" uuid="f20fe8d6-4863-4b4e-9435-eddabae30f57"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{JobID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="81" y="0" width="79" height="30" uuid="7077174b-0562-403a-bb0e-79c5f4b89797"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{StartHour}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="0" width="79" height="30" uuid="badc1de6-4f61-4d6a-a54a-3e5eee0b1eb6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{EndHour}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="240" y="0" width="78" height="30" uuid="06d992a0-419a-4f53-846b-7dbe2f4e4397"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Role}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="318" y="0" width="79" height="30" uuid="c3f3ab37-637f-4a7e-98bb-dc388747f857"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{BallotNum}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="397" y="0" width="79" height="30" uuid="b5755f59-324a-45d0-9043-21eea1dcf9aa"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{EmpID1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="476" y="0" width="79" height="30" uuid="43728639-fe22-4814-b611-8eba5f18affc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{EmpID2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="fab082df-3ca0-43ac-900e-4da3f8b5a45d"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="13" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="2" y="0" width="555" height="13" forecolor="#D0B48E" backcolor="#9DB1B8" uuid="bfdca178-800d-445c-9a31-bb616a00e8ce"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="513" y="0" width="40" height="13" forecolor="#FFFFFF" uuid="2fba0f87-635e-476d-858f-d102b26146fe"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" mode="Transparent" x="433" y="0" width="80" height="13" forecolor="#FFFFFF" uuid="e454d23d-bcfc-4c79-a399-0ef520a3150a"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="2" y="0" width="197" height="13" forecolor="#FFFFFF" uuid="14d8de1e-8695-4078-a67f-0e69172574d5"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

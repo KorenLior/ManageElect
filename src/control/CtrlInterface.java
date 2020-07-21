@@ -1,7 +1,6 @@
 package control;
 
-
-
+import java.util.Vector;
 
 public class CtrlInterface {
 	
@@ -121,6 +120,11 @@ public class CtrlInterface {
 	
 	public void electorPhoneUpdate(int electorId, int phoneNum) {
 		(new CtrlElector()).updatePhone(electorId, phoneNum);
+	}
+	
+	public Vector<Vector<Object>> getElectionDayPositions(){
+		Vector<Vector<Object>> result = (new CtrlElectionDayPosition()).getPositionList();
+		return result;
 	}
 
 }

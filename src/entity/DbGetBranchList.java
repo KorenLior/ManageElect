@@ -8,10 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class DbGetBranchList {
-
-	public DbGetBranchList() {
-		// TODO Auto-generated constructor stub
-	}
 	
 	
 	public static ArrayList<Branch> getBranches() {

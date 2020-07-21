@@ -17,11 +17,11 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
 
 public class BdrMain extends JFrame {
 
 	private JPanel contentPane;
-	private JTable table;
 	private JTextField textField;
 
 	/**
@@ -65,8 +65,6 @@ public class BdrMain extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		table = new JTable();
-		
 		JButton btnUpdate = new JButton("Update Contact");
 		
 		textField = new JTextField();
@@ -78,6 +76,8 @@ public class BdrMain extends JFrame {
 				appEngine.popUpElectorInfo();
 			}
 		});
+		
+		JScrollPane scrollPane = new JScrollPane();
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -87,8 +87,8 @@ public class BdrMain extends JFrame {
 					.addComponent(btnUpdate)
 					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 					.addComponent(btnInfo)
-					.addContainerGap(153, Short.MAX_VALUE))
-				.addComponent(table, GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)
+					.addContainerGap(110, Short.MAX_VALUE))
+				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -98,7 +98,7 @@ public class BdrMain extends JFrame {
 						.addComponent(btnUpdate)
 						.addComponent(btnInfo))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(table, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
