@@ -44,7 +44,70 @@ public class DbElectionDayPositions {
 		return results;
 	}
 
-	
+	public static ArrayList<ElectionDayPosition> getPositionsEmployee(int employeeId) {
+		 ArrayList<ElectionDayPosition> results = new ArrayList<ElectionDayPosition>();
+		 try {
+		 Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+		 try (Connection conn = DriverManager.getConnection(ConstsDbManageElect.CONN_STR);
+
+		 PreparedStatement stmt = conn.prepareStatement(ConstsDbManageElect.SQL_SEL_DAYPOSITIONS_EMPLOYEE1
+				 +employeeId);
+
+		 ResultSet rs = stmt.executeQuery()) {
+
+		 while (rs.next()) {
+			 int i = 1;
+			 ElectionDayPosition result = null;
+			 try
+			 {
+				 result = new ElectionDayPosition(rs.getInt(i++), rs.getInt(i++), rs.getInt(i++),
+						 rs.getString(i++), rs.getInt(i++), rs.getInt(i++), rs.getInt(i++));	 
+			 }
+			 catch (Exception e) {
+				// TODO: handle exception
+				 System.out.println("ElectionDayPosition readDb Failure");
+			 }
+			 results.add(result);
+		 }
+		 } catch (SQLException e) {
+			 System.out.println("getElectionDayPosition() readFromDb Failure");
+		 e.printStackTrace();
+		 }
+		} catch (ClassNotFoundException e) {
+		 e.printStackTrace();
+		}
+		 try {
+			 Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+			 try (Connection conn = DriverManager.getConnection(ConstsDbManageElect.CONN_STR);
+
+			 PreparedStatement stmt = conn.prepareStatement(ConstsDbManageElect.SQL_SEL_DAYPOSITIONS_EMPLOYEE2
+					 +employeeId);
+
+			 ResultSet rs = stmt.executeQuery()) {
+
+			 while (rs.next()) {
+				 int i = 1;
+				 ElectionDayPosition result = null;
+				 try
+				 {
+					 result = new ElectionDayPosition(rs.getInt(i++), rs.getInt(i++), rs.getInt(i++),
+							 rs.getString(i++), rs.getInt(i++), rs.getInt(i++), rs.getInt(i++));	 
+				 }
+				 catch (Exception e) {
+					// TODO: handle exception
+					 System.out.println("ElectionDayPosition readDb Failure");
+				 }
+				 results.add(result);
+			 }
+			 } catch (SQLException e) {
+				 System.out.println("getElectionDayPosition() readFromDb Failure");
+			 e.printStackTrace();
+			 }
+			} catch (ClassNotFoundException e) {
+			 e.printStackTrace();
+			}
+		return results;
+	}
 	
 	public void insertPosition(int startHour, int endHour, String role, int ballotNum,
 			int employee1, int employee2) {

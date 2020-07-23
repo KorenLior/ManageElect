@@ -6,13 +6,13 @@ public class Employee {
 	private String birthDate;
 	private String gender;
 	private String nationality;
-	private String car;
+	private Boolean car;
 	private int status, numChildren, branchNum;
 	public Employee(int id, 
 			String birthDate, 
 			String gender, 
 			String nationality, 
-			String car, 
+			Boolean car, 
 			int status, 
 			int numChildren,
 			int branchNum) {
@@ -37,7 +37,7 @@ public class Employee {
 	public String getNationality() {
 		return nationality;
 	}
-	public String isCar() {
+	public Boolean isCar() {
 		return car;
 	}
 	public int getStatus() {

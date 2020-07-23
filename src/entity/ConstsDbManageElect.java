@@ -15,6 +15,9 @@ public class ConstsDbManageElect {
 	public static final String SQL_UPDATE_ELECTOR_PHONE =  "{ call QryUpdateElectorPhone(?,?) }";
 	public static final String SQL_SEL_DAYPOSITIONS = "SELECT * FROM TblElectionDayPosition";
 	public static final String SQL_INS_DAYPOSITION =  "{ call QryNewElectionDayPosition(?,?,?,?,?,?) }";
+	public static final String SQL_SEL_DAYPOSITIONS_EMPLOYEE1 = "SELECT * FROM TblElectionDayPosition WHERE EmpID1=";
+	public static final String SQL_SEL_DAYPOSITIONS_EMPLOYEE2 = "SELECT * FROM TblElectionDayPosition WHERE EmpID2=";
+	public static final String SQL_SEL_EMPLOYEE = "SELECT * FROM TblEmployee WHERE ID=";
 	private static String getDBPath() {
 		 try {
 		String path = ConstsDbManageElect.class.getProtectionDomain().getCodeSource().getLocation().getPath();

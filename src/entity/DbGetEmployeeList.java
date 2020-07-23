@@ -30,7 +30,7 @@ public class DbGetEmployeeList {
 		 int i = 1;
 
 		 results.add(new Employee(rs.getInt(i++), rs.getString(i++),
-		 rs.getString(i++), rs.getString(i++), rs.getString(i++),
+		 rs.getString(i++), rs.getString(i++), rs.getBoolean(i++),
 		 rs.getInt(i++), rs.getInt(i++), rs.getInt(i++)));
 		 }
 		 } catch (SQLException e) {
@@ -43,6 +43,37 @@ public class DbGetEmployeeList {
 		}
 
 		return results;
+	}
+	
+	
+	public static Employee getEmployee(int id) {
+		 Employee result = null;
+		 try {
+		 Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+		 try (Connection conn = DriverManager.getConnection(ConstsDbManageElect.CONN_STR);
+
+		 PreparedStatement stmt = conn.prepareStatement(ConstsDbManageElect.SQL_SEL_EMPLOYEE
+				 +id);
+
+		 ResultSet rs = stmt.executeQuery()) {
+
+		 while (rs.next()) {
+		 int i = 1;
+
+		 result = new Employee(rs.getInt(i++), rs.getString(i++),
+		 rs.getString(i++), rs.getString(i++), rs.getBoolean(i++),
+		 rs.getInt(i++), rs.getInt(i++), rs.getInt(i++));
+		 }
+		 } catch (SQLException e) {
+			 System.out.print("Employee Read Failure");
+		 e.printStackTrace();
+		 }
+		} catch (ClassNotFoundException e) {
+			 System.out.print("Employee Class Not Found");
+		 e.printStackTrace();
+		}
+
+		return result;
 	}
 
 }
