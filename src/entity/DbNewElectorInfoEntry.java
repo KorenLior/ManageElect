@@ -6,11 +6,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DbNewElectorInfoEntry {
-	private int employeeId, electorId;
-	String gotAnswer, planToVote, supportTheParty, interestInClass,
-	needRide, pickupFrom, pickupTo, callDate;
-	public DbNewElectorInfoEntry(int employeeId, int electorId, String gotAnswer, String planToVote,
-			String supportTheParty, String interestInClass, String needRide, String pickupFrom, String pickupTo,
+	private int employeeId, electorId, pickupFrom, pickupTo;
+	String planToVote, supportTheParty, callDate;
+	Boolean gotAnswer, interestInClass, needRide;
+	public DbNewElectorInfoEntry(int employeeId, int electorId, Boolean gotAnswer, String planToVote,
+			String supportTheParty, Boolean interestInClass, Boolean needRide, int pickupFrom, int pickupTo,
 			String callDate) {
 		super();
 		this.employeeId = employeeId;
@@ -72,13 +72,13 @@ public class DbNewElectorInfoEntry {
 		int i = 1;
 		 //stmt.setString(i++, callDate);
 		stmt.setString(i++, callDate);
-		stmt.setString(i++, gotAnswer);
+		stmt.setBoolean(i++, gotAnswer);
 		stmt.setString(i++, planToVote);
 		stmt.setString(i++, supportTheParty);
-		 stmt.setString(i++, interestInClass);
-		 stmt.setString(i++, needRide);
-		 stmt.setString(i++, pickupFrom);
-		 stmt.setString(i++, pickupTo);
+		 stmt.setBoolean(i++, interestInClass);
+		 stmt.setBoolean(i++, needRide);
+		 stmt.setInt(i++, pickupFrom);
+		 stmt.setInt(i++, pickupTo);
 		 stmt.setInt(i++, electorId);
 		 stmt.setInt(i++, employeeId);
 		 stmt.executeUpdate();

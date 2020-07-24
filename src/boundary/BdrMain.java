@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 
@@ -23,6 +24,7 @@ public class BdrMain extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
+	private JTable tableElectors;
 
 	/**
 	 * Launch the application.
@@ -50,17 +52,22 @@ public class BdrMain extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
-		JMenu mnNewMenu = new JMenu("New menu");
+		JMenu mnNewMenu = new JMenu("Manage");
 		menuBar.add(mnNewMenu);
 		
-		JMenuItem mntmNewMenuItem = new JMenuItem("New menu item");
-		mnNewMenu.add(mntmNewMenuItem);
+		JMenuItem mntmManageTransport = new JMenuItem("Transportation");
+		mnNewMenu.add(mntmManageTransport);
 		
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("New menu item");
-		mnNewMenu.add(mntmNewMenuItem_1);
+		JMenuItem mntmManagePositions = new JMenuItem("Election Day Roles");
+		mntmManagePositions.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				appEngine.bdrElectionDayPosition();
+			}
+		});
+		mnNewMenu.add(mntmManagePositions);
 		
-		JMenuItem mntmNewMenuItem_2 = new JMenuItem("New menu item");
-		mnNewMenu.add(mntmNewMenuItem_2);
+		JMenuItem mntmReports = new JMenuItem("New menu item");
+		mnNewMenu.add(mntmReports);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -73,7 +80,7 @@ public class BdrMain extends JFrame {
 		JButton btnInfo = new JButton("Contact Elector");
 		btnInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				appEngine.popUpElectorInfo();
+				appEngine.popUpElectorInfoForm();
 			}
 		});
 		
@@ -85,10 +92,10 @@ public class BdrMain extends JFrame {
 					.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnUpdate)
-					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnInfo)
 					.addContainerGap(110, Short.MAX_VALUE))
-				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
+				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -98,8 +105,17 @@ public class BdrMain extends JFrame {
 						.addComponent(btnUpdate)
 						.addComponent(btnInfo))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE))
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
 		);
+		Vector<String> columnNames = new Vector<String>();
+		columnNames.add("ID");
+		columnNames.add("First Name");
+		columnNames.add("Last Name");
+		columnNames.add("Address");
+		columnNames.add("Phone");
+		columnNames.add("Ballot");
+		tableElectors = new JTable(appEngine.ctrlInterface.getElectorsTable(),columnNames);
+		scrollPane.setViewportView(tableElectors);
 		contentPane.setLayout(gl_contentPane);
 	}
 }

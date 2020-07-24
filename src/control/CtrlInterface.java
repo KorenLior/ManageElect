@@ -2,13 +2,16 @@ package control;
 
 import java.util.Vector;
 
+import entity.DbGetEmployeeList;
+import entity.Employee;
+
 public class CtrlInterface {
 	
 	private CtrlLogin ctrlLogin;
 	private int loginId = -1;
 	private int manager;
 	private static CtrlSystemInfo ctrlSystemInfo;
-	
+	private Employee me = null;
 	protected Object clone() throws CloneNotSupportedException {
 		// TODO Auto-generated method stub
 		return super.clone();
@@ -41,6 +44,7 @@ public class CtrlInterface {
 		if (ctrlLogin.getPermission()>-1)
 		{
 			this.loginId = employeeId;
+			me = new DbGetEmployeeList().getEmployee(employeeId);
 			System.out.println("loginId = "+loginId);
 		}
 	}
@@ -58,6 +62,12 @@ public class CtrlInterface {
 	public int getId()
 	{
 		return loginId;
+	}
+	public int getBranch() {
+		if (loginId==-1) {
+			return 0;
+		}
+		return me.getBranchNum();
 	}
 	/**
 	public void contactElector(int electorId, Date callDate,
@@ -107,8 +117,8 @@ public class CtrlInterface {
 		return res;
 	}
 	
-	public void contactElector(int electorId, String date, String gotAnswer, String planToVote, String supportTheParty,
-			String interestInClass, String needRide, String pickupFrom, String pickupTo) {
+	public void contactElector(int electorId, String date, Boolean gotAnswer, String planToVote, String supportTheParty,
+			Boolean interestInClass, Boolean needRide, int pickupFrom, int pickupTo) {
 		if (loginId != -1)
 		{
 			CtrlContactElector ctrlContactElector = new CtrlContactElector(loginId, electorId,
@@ -126,5 +136,19 @@ public class CtrlInterface {
 		Vector<Vector<Object>> result = (new CtrlElectionDayPosition()).getPositionList();
 		return result;
 	}
-
+	public Vector<Vector<Object>> getElectionDayPositionsBranch(){
+		if (loginId==-1) {
+			return null;
+		}
+		Vector<Vector<Object>> result = (new CtrlElectionDayPosition()).getPositionBranchList(me.getBranchNum());
+		return result;
+	}
+	public Vector<Vector<Object>> getElectorsTable(){
+		Vector<Vector<Object>> result = (new CtrlElector()).getElectorsTable();
+		return result;
+	}
+	public void insertPosition(int startHour, int endHour, String role, int ballotNum, int employee1, int employee2) {
+		CtrlElectionDayPosition ctrlElectionDayPosition = new CtrlElectionDayPosition();
+		ctrlElectionDayPosition.insertPosition(startHour, endHour, role, ballotNum, employee1, employee2);
+	}
 }

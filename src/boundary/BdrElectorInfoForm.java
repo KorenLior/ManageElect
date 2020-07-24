@@ -24,8 +24,6 @@ public class BdrElectorInfoForm extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField tfE;
-	private JTextField tfFrom;
-	private JTextField tfUntil;
 	private int electorId = -1;
 
 	/**
@@ -76,7 +74,6 @@ public class BdrElectorInfoForm extends JDialog {
 				if (result!=null){
 					lblElector.setText(result);
 					setId(electorId);
-					
 				}
 			}
 		});
@@ -111,18 +108,6 @@ public class BdrElectorInfoForm extends JDialog {
 		chckbxRR.setBounds(11, 228, 93, 23);
 		chckbxRR.setEnabled(false);
 		
-		tfFrom = new JTextField();
-		tfFrom.setText("08:00");
-		tfFrom.setBounds(144, 258, 86, 20);
-		tfFrom.setEnabled(false);
-		tfFrom.setColumns(10);
-		
-		tfUntil = new JTextField();
-		tfUntil.setText("22:00");
-		tfUntil.setBounds(144, 284, 86, 20);
-		tfUntil.setEnabled(false);
-		tfUntil.setColumns(10);
-		
 		JLabel lblNewLabel = new JLabel("Plans to vote");
 		lblNewLabel.setBounds(45, 140, 73, 14);
 		
@@ -133,28 +118,89 @@ public class BdrElectorInfoForm extends JDialog {
 		contentPanel.add(comboBoxSupports);
 		contentPanel.add(comboBoxInterested);
 		contentPanel.add(chckbxRR);
-		contentPanel.add(tfFrom);
-		contentPanel.add(tfUntil);
 		contentPanel.add(lblNewLabel);
 		contentPanel.add(tfE);
 		contentPanel.add(btnLoad);
 		contentPanel.add(lblElector);
+		JComboBox<String> comboBoxFrom = new JComboBox<String>();
+		JComboBox<String> comboBoxUntil = new JComboBox<String>();
+		
+		
+		
 		
 		chckbxAnswered.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				comboBoxPlans.setEnabled(true);
-				comboBoxSupports.setEnabled(true);
-				comboBoxInterested.setEnabled(true);
-				chckbxRR.setEnabled(true);
+				if (chckbxAnswered.isSelected()) {
+					comboBoxPlans.setEnabled(true);
+					comboBoxSupports.setEnabled(true);
+					comboBoxInterested.setEnabled(true);
+					chckbxRR.setEnabled(true);
+				}
+				else {
+					comboBoxPlans.setEnabled(false);
+					comboBoxSupports.setEnabled(false);
+					comboBoxInterested.setEnabled(false);
+					chckbxRR.setEnabled(false);
+					comboBoxFrom.setEnabled(false);
+					comboBoxUntil.setEnabled(false);
+				}
 			}
 		});
-		chckbxRR.addActionListener(new ActionListener() {
-			
+		
+		
+		
+		
+		
+		comboBoxUntil.addItem("9:00");
+		comboBoxUntil.addItem("10:00");
+		comboBoxUntil.addItem("11:00");
+		comboBoxUntil.addItem("12:00");
+		comboBoxUntil.addItem("13:00");
+		comboBoxUntil.addItem("14:00");
+		comboBoxUntil.addItem("15:00");
+		comboBoxUntil.addItem("16:00");
+		comboBoxUntil.addItem("17:00");
+		comboBoxUntil.addItem("18:00");
+		comboBoxUntil.addItem("19:00");
+		comboBoxUntil.addItem("20:00");
+		comboBoxUntil.addItem("21:00");
+		comboBoxUntil.addItem("22:00");
+		comboBoxUntil.addItem("23:00");
+		comboBoxUntil.setBounds(141, 286, 70, 22);
+		contentPanel.add(comboBoxUntil);
+		comboBoxUntil.setEnabled(false);
+		
+		comboBoxFrom.addItem("8:00");
+		comboBoxFrom.addItem("9:00");
+		comboBoxFrom.addItem("10:00");
+		comboBoxFrom.addItem("11:00");
+		comboBoxFrom.addItem("12:00");
+		comboBoxFrom.addItem("13:00");
+		comboBoxFrom.addItem("14:00");
+		comboBoxFrom.addItem("15:00");
+		comboBoxFrom.addItem("16:00");
+		comboBoxFrom.addItem("17:00");
+		comboBoxFrom.addItem("18:00");
+		comboBoxFrom.addItem("19:00");
+		comboBoxFrom.addItem("20:00");
+		comboBoxFrom.addItem("21:00");
+		comboBoxFrom.addItem("22:00");
+		comboBoxFrom.setBounds(141, 257, 70, 22);
+		contentPanel.add(comboBoxFrom);
+		comboBoxFrom.setEnabled(false);
+		
+		
+		chckbxRR.addActionListener(new ActionListener() {	
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				tfFrom.setEnabled(true);
-				tfUntil.setEnabled(true);
+				if (chckbxRR.isSelected()) {
+					comboBoxFrom.setEnabled(true);
+					comboBoxUntil.setEnabled(true);
+				}
+				else {
+					comboBoxFrom.setEnabled(false);
+					comboBoxUntil.setEnabled(false);
+				}
 			}
 		});
 		
@@ -169,12 +215,15 @@ public class BdrElectorInfoForm extends JDialog {
 		contentPanel.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("From");
+		
 		lblNewLabel_3.setBounds(108, 261, 26, 14);
 		contentPanel.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("Until");
-		lblNewLabel_4.setBounds(108, 287, 26, 14);
+		lblNewLabel_4.setBounds(108, 290, 26, 14);
 		contentPanel.add(lblNewLabel_4);
+		
+		
 		
 		
 		{
@@ -188,38 +237,48 @@ public class BdrElectorInfoForm extends JDialog {
 						DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");  
 						LocalDateTime now = LocalDateTime.now();
 						
-						String ans = "no";
-						String rr = "no";
-						String from,until;
-						from = until = null;
+						Boolean ans = false;
+						Boolean ride = false;
+						int from,until;
+						from = until = 0;
+						boolean intrested = false;
 						if (chckbxAnswered.isSelected()) {
-							ans = "yes";
+							ans = true;
+							if (comboBoxInterested.getSelectedIndex()==1)
+							{
+								intrested=true;
+							}
 							if (chckbxRR.isSelected()) {
-								rr = "yes";
-								from = tfFrom.getText();
-								until = tfUntil.getText();
+								ride = true;
+								from = comboBoxFrom.getSelectedIndex()+8;
+								until = comboBoxUntil.getSelectedIndex()+9;
 							}
 						}
 						if (electorId !=-1) {
 						appEngine.ctrlInterface.contactElector(electorId, dtf.format(now), ans, 
 								(String)comboBoxPlans.getSelectedItem(),(String)comboBoxSupports.getSelectedItem(), 
-								(String)comboBoxInterested.getSelectedItem(), rr, 
+								intrested, ride, 
 								from, until);
 						}
 					}
 				});
-				btnSave.setActionCommand("OK");
 				buttonPane.add(btnSave);
 				getRootPane().setDefaultButton(btnSave);
 			}
 			{
 				JButton btnCancel = new JButton("Cancel");
-				btnCancel.setActionCommand("Cancel");
+				btnCancel.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						closeGui();
+					}
+				});
 				buttonPane.add(btnCancel);
 			}
 		}
 	}
-	
+	private void closeGui() {
+		this.dispose();
+	}
 	private void setId(int id) {
 		electorId = id;
 	}

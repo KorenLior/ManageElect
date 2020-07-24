@@ -1,10 +1,30 @@
 package control;
 
+import java.util.ArrayList;
+import java.util.Vector;
+
+import entity.DbElectionDayPositions;
 import entity.DbElectors;
+import entity.ElectionDayPosition;
 import entity.Elector;
 
 class CtrlElector {
-	
+	public Vector<Vector<Object>> getElectorsTable(){
+		Vector<Vector<Object>> results  = new Vector<Vector<Object>>();
+		DbElectors dbElectors = new DbElectors();
+		ArrayList<Elector> electors = dbElectors.getElectors();
+		for (Elector elector:electors) {
+			Vector<Object> result = new Vector<Object>();
+			result.add(elector.getId());
+			result.add(elector.getFirstName());
+			result.add(elector.getLastName());
+			result.add(elector.getAddress());
+			result.add(elector.getPhoneNumber());
+			result.add(elector.getBallotNum());
+			results.add(result);
+		}
+		return results;
+	}
 	public int getElectorPhone(int id) {
 		Elector res = (new DbElectors()).getElector(id);
 		if (res==null)

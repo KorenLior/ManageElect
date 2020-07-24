@@ -24,10 +24,27 @@ public class appEngine {
 		}
 	}
 	
-	public static void popUpElectorInfo() {
+	public static void popUpElectorInfoForm() {
 		JDialog popup = new BdrElectorInfoForm();
 		popup.setVisible(true);
 	}
+	public static void popUpElectorContactForm() {
+		JDialog popup = new BdrElectorContact();
+		popup.setVisible(true);
+	}
+	public static void bdrElectionDayPosition() {
+		if (ctrlInterface.getPermmission()>=3) {
+			main.setVisible(false);
+			main = new BdrRole();
+			main.setVisible(true);
+		}
+		if (ctrlInterface.getPermmission()>=2) {
+			main.setVisible(false);
+			main = new BdrRole_Branch();
+			main.setVisible(true);
+		}
+	}
+	
 	public static String loadElector(int electorId){
 		String electorInfo = ctrlInterface.getElector(electorId);
 		return electorInfo;

@@ -29,7 +29,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 
-public class BdrRole extends JFrame {
+public class BdrRole_Branch extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtEmployeeId1;
@@ -44,7 +44,7 @@ public class BdrRole extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					BdrRole frame = new BdrRole();
+					BdrRole_Branch frame = new BdrRole_Branch();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -56,7 +56,7 @@ public class BdrRole extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public BdrRole() {
+	public BdrRole_Branch() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 411, 349);
 		contentPane = new JPanel();
@@ -78,7 +78,7 @@ public class BdrRole extends JFrame {
 		columnNames.add("Employee 1");
 		columnNames.add("Employee 2");
 	
-		Vector<Vector<Object>> data = appEngine.ctrlInterface.getElectionDayPositions();
+		Vector<Vector<Object>> data = appEngine.ctrlInterface.getElectionDayPositionsBranch();
 		JComboBox<String> comboBoxRole = new JComboBox();
 		comboBoxRole.addItem("Driver");
 		comboBoxRole.addItem("Ballot Rep");

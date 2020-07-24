@@ -14,8 +14,8 @@ class CtrlContactElector {
 				needRide, pickupFrom, pickupTo, callDate);
 		
 	}
-*/	CtrlContactElector(int employeeId, int electorId, String gotAnswer, String planToVote,
-		String supportTheParty, String interestInClass, String needRide, String pickupFrom, String pickupTo,
+*/	CtrlContactElector(int employeeId, int electorId, Boolean gotAnswer, String planToVote,
+		String supportTheParty, Boolean interestInClass, Boolean needRide, int pickupFrom, int pickupTo,
 		String callDate) {
 		DbNewElectorInfoEntry dbNewElectorInfoEntry = new DbNewElectorInfoEntry(employeeId, electorId,
 				gotAnswer, planToVote, supportTheParty, interestInClass,
