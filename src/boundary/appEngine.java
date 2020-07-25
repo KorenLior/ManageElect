@@ -49,4 +49,12 @@ public class appEngine {
 		String electorInfo = ctrlInterface.getElector(electorId);
 		return electorInfo;
 	}
+
+	public static void bdrRideManage() {
+		if (ctrlInterface.getPermmission()>=1) {
+			main.setVisible(false);
+			main = new BdrRideManage();
+			main.setVisible(true);
+		}
+	}
 }

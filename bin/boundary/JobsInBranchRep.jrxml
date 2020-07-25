@@ -72,20 +72,20 @@ GROUP BY `TblElectionDayPosition`.`JobID`,
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="113" splitType="Stretch">
+		<band height="78" splitType="Stretch">
 			<staticText>
-				<reportElement style="Title" x="4" y="50" width="553" height="60" uuid="f49d68fd-a2c7-44ec-a5fc-9300d10c85a1"/>
+				<reportElement style="Title" x="4" y="10" width="553" height="50" uuid="f49d68fd-a2c7-44ec-a5fc-9300d10c85a1"/>
 				<textElement>
-					<font size="40" isBold="false"/>
+					<font size="35" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Election Day Roles in ]]></text>
+				<text><![CDATA[Election Day Badges Branch]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="380" y="60" width="100" height="30" uuid="db96ce68-3900-4098-a461-bc31f07e798f"/>
+				<reportElement x="430" y="20" width="120" height="30" uuid="db96ce68-3900-4098-a461-bc31f07e798f"/>
 				<textElement>
 					<font size="20" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{Branch}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[ $P{Branch}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
@@ -93,53 +93,39 @@ GROUP BY `TblElectionDayPosition`.`JobID`,
 		<band splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="24" splitType="Stretch">
+		<band height="72" splitType="Stretch">
 			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.HorizontalRowLayout"/>
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<staticText>
-				<reportElement x="0" y="0" width="81" height="24" uuid="092dc1be-88ec-4996-bd36-3d1414f50258"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Job Key]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="81" y="0" width="79" height="24" uuid="1727cdb8-31db-4ab2-ae6d-51a1c716039a"/>
+				<reportElement x="0" y="0" width="111" height="72" uuid="1727cdb8-31db-4ab2-ae6d-51a1c716039a"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[From]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="160" y="0" width="79" height="24" uuid="c5d5dc35-79c9-4f7e-bed0-b2ef670fc0e8"/>
+				<reportElement x="111" y="0" width="111" height="72" uuid="c5d5dc35-79c9-4f7e-bed0-b2ef670fc0e8"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Until]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="239" y="0" width="79" height="24" uuid="aefcec48-0ed0-4b77-b6d1-5cf5d61e4d39"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Role]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="318" y="0" width="79" height="24" uuid="e75bcd69-2436-4ce4-ad30-046f8c93ff9a"/>
+				<reportElement x="222" y="0" width="111" height="72" uuid="e75bcd69-2436-4ce4-ad30-046f8c93ff9a"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Ballot]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="397" y="0" width="79" height="24" uuid="5abdedb5-a6c9-47a6-a684-22b572d0c486"/>
+				<reportElement x="333" y="0" width="111" height="72" uuid="5abdedb5-a6c9-47a6-a684-22b572d0c486"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Employee1]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="476" y="0" width="79" height="24" uuid="32e5a57a-750f-4f9b-a6ce-b86dc001c450"/>
+				<reportElement x="444" y="0" width="111" height="72" uuid="32e5a57a-750f-4f9b-a6ce-b86dc001c450"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
@@ -148,39 +134,29 @@ GROUP BY `TblElectionDayPosition`.`JobID`,
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="54" splitType="Stretch">
+		<band height="157" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="0" width="81" height="30" uuid="f20fe8d6-4863-4b4e-9435-eddabae30f57"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{JobID}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="81" y="0" width="79" height="30" uuid="7077174b-0562-403a-bb0e-79c5f4b89797"/>
+				<reportElement x="0" y="0" width="111" height="130" uuid="7077174b-0562-403a-bb0e-79c5f4b89797"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{StartHour}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="160" y="0" width="79" height="30" uuid="badc1de6-4f61-4d6a-a54a-3e5eee0b1eb6"/>
+				<reportElement x="110" y="0" width="112" height="130" uuid="badc1de6-4f61-4d6a-a54a-3e5eee0b1eb6"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{EndHour}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="240" y="0" width="78" height="30" uuid="06d992a0-419a-4f53-846b-7dbe2f4e4397"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{Role}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="318" y="0" width="79" height="30" uuid="c3f3ab37-637f-4a7e-98bb-dc388747f857"/>
+				<reportElement x="222" y="0" width="111" height="130" uuid="c3f3ab37-637f-4a7e-98bb-dc388747f857"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{BallotNum}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="397" y="0" width="79" height="30" uuid="b5755f59-324a-45d0-9043-21eea1dcf9aa"/>
+				<reportElement x="333" y="0" width="111" height="130" uuid="b5755f59-324a-45d0-9043-21eea1dcf9aa"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{EmpID1}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="476" y="0" width="79" height="30" uuid="43728639-fe22-4814-b611-8eba5f18affc"/>
+				<reportElement x="444" y="0" width="111" height="130" uuid="43728639-fe22-4814-b611-8eba5f18affc"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{EmpID2}]]></textFieldExpression>
 			</textField>

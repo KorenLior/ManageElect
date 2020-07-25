@@ -25,9 +25,12 @@ import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTable;
 import javax.swing.JList;
+import javax.swing.JMenu;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
 public class BdrRole extends JFrame {
 
@@ -59,6 +62,42 @@ public class BdrRole extends JFrame {
 	public BdrRole() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 411, 349);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenu mnNewMenu = new JMenu("Manage");
+		menuBar.add(mnNewMenu);
+		
+		JMenuItem mntmManageTransport = new JMenuItem("Transportation");
+		mntmManageTransport.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent arg0) {
+				appEngine.bdrRideManage();
+			}
+		});
+		mnNewMenu.add(mntmManageTransport);
+		
+		JMenuItem mntmManagePositions = new JMenuItem("Election Day Roles");
+		mntmManagePositions.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				appEngine.bdrElectionDayPosition();
+			}
+		});
+		mnNewMenu.add(mntmManagePositions);
+		
+		JMenuItem mntmSystem = new JMenuItem("System Management");
+		mnNewMenu.add(mntmSystem);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		
+		JButton btnUpdate = new JButton("Update Contact");
+		btnUpdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				appEngine.popUpElectorContactForm();
+			}
+		});
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

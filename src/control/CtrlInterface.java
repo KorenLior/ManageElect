@@ -22,16 +22,6 @@ public class CtrlInterface {
 		manager = ctrlSystemInfo.getManagerId();
 		
 	}
-	private void iddqdidkfa()
-	{
-		loginId = manager;
-		try {
-			ctrlLogin = new CtrlLogin(manager);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			System.out.print("lol no cheating");
-		}
-	}
 	public void login(int employeeId)
 	{
 		

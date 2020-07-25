@@ -56,6 +56,12 @@ public class BdrMain extends JFrame {
 		menuBar.add(mnNewMenu);
 		
 		JMenuItem mntmManageTransport = new JMenuItem("Transportation");
+		mntmManageTransport.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent arg0) {
+				appEngine.bdrRideManage();
+			}
+		});
 		mnNewMenu.add(mntmManageTransport);
 		
 		JMenuItem mntmManagePositions = new JMenuItem("Election Day Roles");
@@ -66,13 +72,18 @@ public class BdrMain extends JFrame {
 		});
 		mnNewMenu.add(mntmManagePositions);
 		
-		JMenuItem mntmReports = new JMenuItem("New menu item");
-		mnNewMenu.add(mntmReports);
+		JMenuItem mntmSystem = new JMenuItem("System Management");
+		mnNewMenu.add(mntmSystem);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
 		JButton btnUpdate = new JButton("Update Contact");
+		btnUpdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				appEngine.popUpElectorContactForm();
+			}
+		});
 		
 		textField = new JTextField();
 		textField.setColumns(10);
