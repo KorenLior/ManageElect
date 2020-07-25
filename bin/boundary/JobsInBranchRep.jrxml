@@ -85,7 +85,7 @@ GROUP BY `TblElectionDayPosition`.`JobID`,
 				<textElement>
 					<font size="20" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[ $P{Branch}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{Branch}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
@@ -122,14 +122,14 @@ GROUP BY `TblElectionDayPosition`.`JobID`,
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Employee1]]></text>
+				<text><![CDATA[ID]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="444" y="0" width="111" height="72" uuid="32e5a57a-750f-4f9b-a6ce-b86dc001c450"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Employee2]]></text>
+				<text><![CDATA[Full Name]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -156,9 +156,8 @@ GROUP BY `TblElectionDayPosition`.`JobID`,
 				<textFieldExpression><![CDATA[$F{EmpID1}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="444" y="0" width="111" height="130" uuid="43728639-fe22-4814-b611-8eba5f18affc"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{EmpID2}]]></textFieldExpression>
+				<reportElement x="444" y="0" width="111" height="130" uuid="3883b7b0-7067-4d23-bd1f-29679836bc1d"/>
+				<textFieldExpression><![CDATA["Text Field"]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

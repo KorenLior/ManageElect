@@ -92,15 +92,6 @@ public class BdrRole extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		JButton btnUpdate = new JButton("Update Contact");
-		btnUpdate.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				appEngine.popUpElectorContactForm();
-			}
-		});
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
 		
 		txtEmployeeId2 = new JTextField();
 		txtEmployeeId2.setEnabled(false);

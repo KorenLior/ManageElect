@@ -1,6 +1,5 @@
 package boundary;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,6 +20,10 @@ import javax.swing.JMenuItem;
 
 public class BdrRideManage extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable tableDrivers;
 	private JTable tableRiders;
@@ -78,16 +81,6 @@ public class BdrRideManage extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		JButton btnUpdate = new JButton("Update Contact");
-		btnUpdate.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				appEngine.popUpElectorContactForm();
-			}
-		});
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		
 		tableDrivers = new JTable();
 		
 		tableRiders = new JTable();
@@ -95,42 +88,45 @@ public class BdrRideManage extends JFrame {
 		txtElector = new JTextField();
 		txtElector.setColumns(10);
 		
-		JComboBox comboBoxRideID = new JComboBox();
+		JComboBox<String> comboBoxRideID = new JComboBox<String>();
 		
-		JComboBox comboBoxRideTime = new JComboBox();
-		
+		JComboBox<String> comboBoxRideTime = new JComboBox<String>();
 		JButton btnAddRide = new JButton("New button");
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(tableDrivers, GroupLayout.PREFERRED_SIZE, 423, GroupLayout.PREFERRED_SIZE)
-						.addComponent(tableRiders, GroupLayout.PREFERRED_SIZE, 426, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(txtElector, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(comboBoxRideID, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(comboBoxRideTime, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnAddRide)))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
+				gl_contentPane.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_contentPane.createSequentialGroup()
+						.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+							.addComponent(tableDrivers, GroupLayout.PREFERRED_SIZE, 423, GroupLayout.PREFERRED_SIZE)
+							.addComponent(tableRiders, GroupLayout.PREFERRED_SIZE, 426, GroupLayout.PREFERRED_SIZE)
+							.addGroup(gl_contentPane.createSequentialGroup()
+								.addComponent(txtElector, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(comboBoxRideID, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(comboBoxRideTime, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(btnAddRide)))
+						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+			);
 		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(tableDrivers, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(tableRiders, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(txtElector, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(comboBoxRideID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(comboBoxRideTime, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnAddRide))
-					.addContainerGap())
-		);
-		contentPane.setLayout(gl_contentPane);
+				gl_contentPane.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_contentPane.createSequentialGroup()
+						.addComponent(tableDrivers, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(tableRiders, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+							.addComponent(txtElector, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(comboBoxRideID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(comboBoxRideTime, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(btnAddRide))
+						.addContainerGap())
+			);
+			contentPane.setLayout(gl_contentPane);
+		
+		
+		
+		
 	}
 }
