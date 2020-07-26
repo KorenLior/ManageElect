@@ -133,6 +133,17 @@ public class CtrlInterface {
 		Vector<Vector<Object>> result = (new CtrlElectionDayPosition()).getPositionBranchList(me.getBranchNum());
 		return result;
 	}
+	public Vector<Vector<Object>> getDriversBranch(){
+		Vector<Vector<Object>> result = (new CtrlElectionDayPosition()).getDriverBranchList(1111);
+		return result;
+	}
+	public Vector<Vector<Object>> getRiders(boolean assigned){
+		Vector<Vector<Object>> result = null;
+		if (!assigned) {
+			result = (new CtrlElectionDayPosition()).getUnassignedRidersBranch(1111);
+		}
+		return result;
+	}
 	public Vector<Vector<Object>> getElectorsTable(){
 		Vector<Vector<Object>> result = (new CtrlElector()).getElectorsTable();
 		return result;

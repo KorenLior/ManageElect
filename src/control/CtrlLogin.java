@@ -17,7 +17,7 @@ class CtrlLogin {
 	}
 	public CtrlLogin(int id) throws Exception {
 		
-		emplyeeList = DbGetEmployeeList.getEmployees();
+		emplyeeList = (new DbGetEmployeeList()).getEmployees();
 		new DbGetBranchList();
 		ArrayList<Branch> branchList = DbGetBranchList.getBranches();
 		CtrlSystemInfo ctrlSystemInfo = new CtrlSystemInfo();

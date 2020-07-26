@@ -3,6 +3,7 @@ package boundary;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,6 +18,8 @@ import javax.swing.JButton;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JScrollPane;
+import javax.swing.JLabel;
 
 public class BdrRideManage extends JFrame {
 
@@ -28,6 +31,7 @@ public class BdrRideManage extends JFrame {
 	private JTable tableDrivers;
 	private JTable tableRiders;
 	private JTextField txtElector;
+	private JTable tableRideReq;
 
 	/**
 	 * Launch the application.
@@ -50,7 +54,7 @@ public class BdrRideManage extends JFrame {
 	 */
 	public BdrRideManage() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 336);
+		setBounds(100, 100, 1128, 592);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -81,9 +85,11 @@ public class BdrRideManage extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		tableDrivers = new JTable();
-		
-		tableRiders = new JTable();
+		Vector<String> driversColumnNames = new Vector<String>();
+		driversColumnNames.add("JobID");
+		driversColumnNames.add("From");
+		driversColumnNames.add("Until");
+		driversColumnNames.add("Employee ID");
 		
 		txtElector = new JTextField();
 		txtElector.setColumns(10);
@@ -92,37 +98,83 @@ public class BdrRideManage extends JFrame {
 		
 		JComboBox<String> comboBoxRideTime = new JComboBox<String>();
 		JButton btnAddRide = new JButton("New button");
+		
+		JScrollPane scrollPane = new JScrollPane();
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		
+		JScrollPane scrollPane_2 = new JScrollPane();
+		
+		JLabel lblNewLabel = new JLabel("Available Drivers");
+		
+		JLabel lblNewLabel_1 = new JLabel("Scheduled Rides");
+		
+		JLabel lblNewLabel_2 = new JLabel("Electors Requiring Rides");
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-				gl_contentPane.createParallelGroup(Alignment.LEADING)
-					.addGroup(gl_contentPane.createSequentialGroup()
-						.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-							.addComponent(tableDrivers, GroupLayout.PREFERRED_SIZE, 423, GroupLayout.PREFERRED_SIZE)
-							.addComponent(tableRiders, GroupLayout.PREFERRED_SIZE, 426, GroupLayout.PREFERRED_SIZE)
-							.addGroup(gl_contentPane.createSequentialGroup()
-								.addComponent(txtElector, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(comboBoxRideID, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(comboBoxRideTime, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(btnAddRide)))
-						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-			);
-		gl_contentPane.setVerticalGroup(
-				gl_contentPane.createParallelGroup(Alignment.LEADING)
-					.addGroup(gl_contentPane.createSequentialGroup()
-						.addComponent(tableDrivers, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(tableRiders, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+						.addComponent(scrollPane_2, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 1092, Short.MAX_VALUE)
+						.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
 							.addComponent(txtElector, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addComponent(comboBoxRideID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addComponent(comboBoxRideTime, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(comboBoxRideID, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(comboBoxRideTime, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(btnAddRide))
-						.addContainerGap())
-			);
+						.addComponent(lblNewLabel, Alignment.LEADING)
+						.addComponent(scrollPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 1018, Short.MAX_VALUE)
+						.addComponent(lblNewLabel_1, Alignment.LEADING)
+						.addComponent(scrollPane_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 1008, Short.MAX_VALUE)
+						.addComponent(lblNewLabel_2, Alignment.LEADING))
+					.addContainerGap())
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addComponent(lblNewLabel)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblNewLabel_1)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 158, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblNewLabel_2)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(scrollPane_2, GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(txtElector, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxRideID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxRideTime, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnAddRide))
+					.addContainerGap())
+		);
+		
+		Vector<Vector<Object>> riderReq = appEngine.ctrlInterface.getRiders(false);
+		Vector<Object> riderReqcColumnNames = new Vector<Object>();
+		riderReqcColumnNames.add("ID");
+		riderReqcColumnNames.add("Call Date");
+		riderReqcColumnNames.add("From");
+		riderReqcColumnNames.add("Until");
+		riderReqcColumnNames.add("Name");
+		riderReqcColumnNames.add("Phone");
+		riderReqcColumnNames.add("Elector Address");
+		riderReqcColumnNames.add("Ballot Address");
+		riderReqcColumnNames.add("Ballot");
+		tableRideReq = new JTable(riderReq,riderReqcColumnNames);
+		scrollPane_2.setViewportView(tableRideReq);
+		
+		
+		tableRiders = new JTable();
+		scrollPane_1.setViewportView(tableRiders);
+		
+				tableDrivers = new JTable(appEngine.ctrlInterface.getDriversBranch(),driversColumnNames);
+				scrollPane.setViewportView(tableDrivers);
 			contentPane.setLayout(gl_contentPane);
 		
 		

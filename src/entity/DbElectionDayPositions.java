@@ -78,7 +78,7 @@ public class DbElectionDayPositions {
 	
 	
 	
-	public static ArrayList<ElectionDayPosition> getPositionsEmployee(int employeeId) {
+	public ArrayList<ElectionDayPosition> getPositionsEmployee(int employeeId) {
 		 ArrayList<ElectionDayPosition> results = new ArrayList<ElectionDayPosition>();
 		 try {
 		 Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
@@ -140,6 +140,86 @@ public class DbElectionDayPositions {
 			} catch (ClassNotFoundException e) {
 			 e.printStackTrace();
 			}
+		return results;
+	}
+	public ArrayList<ElectionDayPosition> getDriversBranch(int branchNum){
+		ArrayList<ElectionDayPosition> results = new ArrayList<ElectionDayPosition>();
+		 try {
+		 Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+		 try (Connection conn = DriverManager.getConnection(ConstsDbManageElect.CONN_STR);
+
+		 PreparedStatement stmt = conn.prepareStatement(ConstsDbManageElect.SQL_SEL_DRIVERS_BRANCH);)
+		  {
+			 try {
+				stmt.setInt(1, branchNum);
+				ResultSet rs = stmt.executeQuery();
+				while (rs.next()) {
+				 int i = 1;
+				 ElectionDayPosition result = null;
+				 try
+				 {
+					 result = new ElectionDayPosition(rs.getInt(i++), rs.getInt(i++), rs.getInt(i++),
+							 "Drive", 0, rs.getInt(i++), 0);	 
+				 }
+				 catch (Exception e) {
+					// TODO: handle exception
+					 System.out.println("ElectionDayPosition readDb Failure");
+				 }
+				 results.add(result);
+				}
+			 }
+			 catch (Exception e) {
+				 System.out.println("getDriversBranch() readFromDb Failure");
+			 }
+			 } catch (SQLException e) {
+				 System.out.println("getElectionDayPosition() readFromDb Failure");
+			 e.printStackTrace();
+			 }
+		} catch (ClassNotFoundException e) {
+		 e.printStackTrace();
+		}
+
+		return results;
+	}
+	public ArrayList<Rider> getUnaasignedRiders(int branchNum){
+		ArrayList<Rider> results = new ArrayList<Rider>();
+		 try {
+		 Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+		 try (Connection conn = DriverManager.getConnection(ConstsDbManageElect.CONN_STR);
+		 PreparedStatement stmt = conn.prepareStatement(ConstsDbManageElect.SQL_SEL_UNASSRIDERS_BRANCH1+branchNum+ConstsDbManageElect.SQL_SEL_UNASSRIDERS_BRANCH2);
+		 ResultSet rs = stmt.executeQuery()) {
+
+		 while (rs.next()) {
+			 int i = 1;
+			 Rider result = null;
+			 try
+			 {
+				 int id = rs.getInt(i++);
+				 String firstName = rs.getString(i++);
+				 String lastName = rs.getString(i++);
+				 int phoneNum = rs.getInt(i++);
+				 String callDate = rs.getString(i++);
+				 int from = rs.getInt(i++);
+				 int until = rs.getInt(i++);
+				 String electorAddress = rs.getString(i++);
+				 String ballotAddress = rs.getString(i++);
+				 int ballotNum = rs.getInt(i++);
+				 result = new Rider((new DbElectors().getElector(id)), from, until, ballotAddress, callDate, new Ride());	 
+			 }
+			 catch (Exception e) {
+				// TODO: handle exception
+				 System.out.println("ElectionDayPosition readDb Failure");
+			 }
+			 results.add(result);
+		 }
+		 } catch (SQLException e) {
+			 System.out.println("getElectionDayPosition() readFromDb Failure");
+		 e.printStackTrace();
+		 }
+		} catch (ClassNotFoundException e) {
+		 e.printStackTrace();
+		}
+
 		return results;
 	}
 	

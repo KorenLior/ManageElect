@@ -16,7 +16,7 @@ public class DbGetEmployeeList {
 	
 	
 	
-	public static ArrayList<Employee> getEmployees() {
+	public ArrayList<Employee> getEmployees() {
 		 ArrayList<Employee> results = new ArrayList<Employee>();
 		 try {
 		 Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
@@ -46,7 +46,7 @@ public class DbGetEmployeeList {
 	}
 	
 	
-	public static Employee getEmployee(int id) {
+	public Employee getEmployee(int id) {
 		 Employee result = null;
 		 try {
 		 Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
