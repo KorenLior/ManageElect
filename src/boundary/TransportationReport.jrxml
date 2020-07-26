@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TransportationReport" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2f6e4db4-9f8f-4ffe-9759-6e1fd142f492">
+	<property name="template.type" value="columnar"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value=" ManageElect Data Adapter"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<style name="Title" forecolor="#000000" fontName="Times New Roman" fontSize="50" isBold="false"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<queryString>
+		<![CDATA[SELECT `PUBLIC`.`QRYRIDERSREP`.`BRANCHNUM`,
+	`PUBLIC`.`QRYRIDERSREP`.`ID`,
+	`PUBLIC`.`QRYRIDERSREP`.`FIRSTNAME`,
+	`PUBLIC`.`QRYRIDERSREP`.`LASTNAME`,
+	`PUBLIC`.`QRYRIDERSREP`.`ELECTOR ADDRESS`,
+	`PUBLIC`.`QRYRIDERSREP`.`PHONENUM`,
+	`PUBLIC`.`QRYRIDERSREP`.`BALLOTNUM`,
+	`PUBLIC`.`QRYRIDERSREP`.`SERIALNUM`,
+	`PUBLIC`.`QRYRIDERSREP`.`RIDEIDASSIGNED`,
+	`PUBLIC`.`QRYRIDERSREP`.`RIDEHOUR`,
+	`PUBLIC`.`QRYRIDERSREP`.`BALLOT ADDRESS`,
+	`PUBLIC`.`QRYRIDERSREP`.`DRIVERID`,
+	`PUBLIC`.`QRYRIDERSREP`.`DRIVERFIRSTNAME`,
+	`PUBLIC`.`QRYRIDERSREP`.`DRIVERLASTNAME`,
+	`PUBLIC`.`QRYRIDERSREP`.`DRIVERPHONE`
+FROM `PUBLIC`.`QRYRIDERSREP`]]>
+	</queryString>
+	<field name="BranchNum" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="BranchNum"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="QryRidersRep"/>
+	</field>
+	<field name="ID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="ID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="QryRidersRep"/>
+	</field>
+	<field name="FirstName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="FirstName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="QryRidersRep"/>
+	</field>
+	<field name="LastName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="LastName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="QryRidersRep"/>
+	</field>
+	<field name="Elector Address" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Elector Address"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="QryRidersRep"/>
+	</field>
+	<field name="PhoneNum" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="PhoneNum"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="QryRidersRep"/>
+	</field>
+	<field name="BallotNum" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="BallotNum"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="QryRidersRep"/>
+	</field>
+	<field name="SerialNum" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="SerialNum"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="QryRidersRep"/>
+	</field>
+	<field name="RideIDAssigned" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="RideIDAssigned"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="QryRidersRep"/>
+	</field>
+	<field name="RideHour" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="RideHour"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="QryRidersRep"/>
+	</field>
+	<field name="Ballot Address" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Ballot Address"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="QryRidersRep"/>
+	</field>
+	<field name="DriverID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="DriverID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="QryRidersRep"/>
+	</field>
+	<field name="DriverFirstName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="DriverFirstName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="QryRidersRep"/>
+	</field>
+	<field name="DriverLastName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="DriverLastName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="QryRidersRep"/>
+	</field>
+	<field name="DriverPhone" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="DriverPhone"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="QryRidersRep"/>
+	</field>
+	<title>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="70" y="0" width="435" height="50" uuid="f49d68fd-a2c7-44ec-a5fc-9300d10c85a1"/>
+				<textElement>
+					<font size="40" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Transportation Report]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-20" y="50" width="601" height="1" uuid="c22999ec-437d-41c6-b235-99f67b0fa662"/>
+			</line>
+		</band>
+	</title>
+	<detail>
+		<band height="181">
+			<textField>
+				<reportElement x="-11" y="60" width="95" height="30" uuid="77b48dcc-6934-4d61-8a53-59726ad7d2e7"/>
+				<textFieldExpression><![CDATA["Elector ID:"+
+ $F{ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="60" width="280" height="30" uuid="bb16bad6-1e96-46a2-8db1-d7180902341b"/>
+				<textFieldExpression><![CDATA[$F{LastName}+" "+$F{FirstName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="-10" y="120" width="150" height="30" uuid="0f51f9a5-bf0d-4b25-a837-dcdeafdf4242"/>
+				<textFieldExpression><![CDATA["Ride ID: "+$F{RideIDAssigned}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="-10" y="90" width="275" height="30" uuid="840fcebf-969b-419a-a1d5-f041d2dbdabe"/>
+				<textFieldExpression><![CDATA["From: "+$F{Elector Address}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="265" y="90" width="290" height="30" uuid="ddf1261a-04ee-48f3-9d21-a1dfb6e2459d"/>
+				<textFieldExpression><![CDATA["To Ballot "+$F{BallotNum}+" at "+$F{Ballot Address}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="60" width="195" height="30" uuid="2197c436-71ff-4a25-8721-330922500a84"/>
+				<textFieldExpression><![CDATA["Phone: "+$F{PhoneNum}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="-10" y="150" width="150" height="30" uuid="2870e94a-23ed-494c-898e-d8e76f2d3c31"/>
+				<textFieldExpression><![CDATA["at "+$F{RideHour}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="120" width="415" height="30" uuid="35b1d05f-6c88-4444-9c26-e5144bb64bfb"/>
+				<textFieldExpression><![CDATA[$F{DriverLastName}+" "+$F{DriverFirstName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="350" y="150" width="205" height="30" uuid="99854f7e-79c0-485e-bb3e-2099d5f33bcd"/>
+				<textFieldExpression><![CDATA["Driver Phone: "+$F{DriverPhone}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="150" width="210" height="30" uuid="e26b01de-3c0a-438d-b378-33137c6cb5a7"/>
+				<textFieldExpression><![CDATA["Driver ID: "+$F{DriverID}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="-20" y="180" width="601" height="1" uuid="eb99db50-04b8-445b-9dd1-2b9d1ea019c7"/>
+			</line>
+			<textField>
+				<reportElement x="-10" y="10" width="240" height="30" uuid="f372b2c4-4b20-474e-9626-a7bc292edcd2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Branch: "+$F{BranchNum}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="51" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="fab082df-3ca0-43ac-900e-4da3f8b5a45d"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="13" splitType="Stretch">
+			<frame>
+				<reportElement x="2" y="0" width="555" height="13" uuid="bf9ea863-2817-49c8-9362-8e64ae7c53b7"/>
+				<frame>
+					<reportElement mode="Opaque" x="0" y="0" width="555" height="13" forecolor="#D0B48E" backcolor="#9DB1B8" uuid="bfdca178-800d-445c-9a31-bb616a00e8ce"/>
+					<textField evaluationTime="Report">
+						<reportElement style="Column header" x="513" y="0" width="40" height="13" forecolor="#FFFFFF" uuid="2fba0f87-635e-476d-858f-d102b26146fe"/>
+						<textElement verticalAlignment="Middle">
+							<font size="10" isBold="false"/>
+						</textElement>
+						<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+					</textField>
+					<textField>
+						<reportElement style="Column header" mode="Transparent" x="433" y="0" width="80" height="13" forecolor="#FFFFFF" uuid="e454d23d-bcfc-4c79-a399-0ef520a3150a"/>
+						<textElement textAlignment="Right" verticalAlignment="Middle">
+							<font size="10" isBold="false"/>
+						</textElement>
+						<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+					</textField>
+					<textField pattern="EEEEE dd MMMMM yyyy">
+						<reportElement style="Column header" x="2" y="0" width="197" height="13" forecolor="#FFFFFF" uuid="14d8de1e-8695-4078-a67f-0e69172574d5"/>
+						<textElement verticalAlignment="Middle">
+							<font size="10" isBold="false"/>
+						</textElement>
+						<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+					</textField>
+				</frame>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
