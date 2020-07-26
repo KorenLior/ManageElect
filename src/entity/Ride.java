@@ -2,20 +2,20 @@ package entity;
 
 public class Ride {
 	private int employeeId;
-	private int time;
-	public Ride(int employeeId, int time) {
+	private String time;
+	public Ride(int employeeId, String time) {
 		super();
 		this.employeeId = employeeId;
 		this.time = time;
 	}
 	public Ride() {
 		employeeId = 0;
-		time = 0;
+		time = null;
 	}
 	public int getEmployeeId() {
 		return employeeId;
 	}
-	public int getTime() {
+	public String getTime() {
 		return time;
 	}
 	

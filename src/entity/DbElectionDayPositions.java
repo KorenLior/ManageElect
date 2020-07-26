@@ -181,7 +181,7 @@ public class DbElectionDayPositions {
 
 		return results;
 	}
-	public ArrayList<Rider> getUnaasignedRiders(int branchNum){
+	public ArrayList<Rider> getUnassignedRiders(int branchNum){
 		ArrayList<Rider> results = new ArrayList<Rider>();
 		 try {
 		 Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
@@ -208,12 +208,12 @@ public class DbElectionDayPositions {
 			 }
 			 catch (Exception e) {
 				// TODO: handle exception
-				 System.out.println("ElectionDayPosition readDb Failure");
+				 System.out.println("UnassignedRiders readDb Failure");
 			 }
 			 results.add(result);
 		 }
 		 } catch (SQLException e) {
-			 System.out.println("getElectionDayPosition() readFromDb Failure");
+			 System.out.println("UnassignedRiders() readFromDb Failure");
 		 e.printStackTrace();
 		 }
 		} catch (ClassNotFoundException e) {
@@ -222,7 +222,47 @@ public class DbElectionDayPositions {
 
 		return results;
 	}
-	
+	public ArrayList<Rider> getAssignedRiders(int branchNum){
+		ArrayList<Rider> results = new ArrayList<Rider>();
+
+		try {
+		 Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+		 try (Connection conn = DriverManager.getConnection(ConstsDbManageElect.CONN_STR);
+		 PreparedStatement stmt = conn.prepareStatement(ConstsDbManageElect.SQL_SEL_ASSRIDERS_BRANCH1+branchNum+ConstsDbManageElect.SQL_SEL_ASSRIDERS_BRANCH2);
+		 ResultSet rs = stmt.executeQuery()) {
+
+		 while (rs.next()) {
+			 int i = 1;
+			 Rider result = null;
+			 try
+			 {
+				 int rideKey = rs.getInt(i++);
+				 String rideTime = rs.getString(i++);
+				 int electorId = rs.getInt(i++);
+				 String lastName = rs.getString(i++);
+				 String firstName = rs.getString(i++);
+				 int phoneNum = rs.getInt(i++);
+				 String elecctorAddress = rs.getString(i++);
+				 String ballotAddress = rs.getString(i++);
+				 int ballotNum = rs.getInt(i++);
+				 int employeeId = rs.getInt(i++);
+				 result = new Rider((new DbElectors().getElector(electorId)), 0, 0, ballotAddress, null, new Ride(employeeId, rideTime));	 
+			 }
+			 catch (Exception e) {
+				// TODO: handle exception
+				 System.out.println("getAssignedRiders readDb Failure");
+			 }
+			 results.add(result);
+		 }
+		 } catch (SQLException e) {
+			 System.out.println("getAssignedRiders() readFromDb Failure");
+		 e.printStackTrace();
+		 }
+		} catch (ClassNotFoundException e) {
+		 e.printStackTrace();
+		}
+		return results;
+	}
 	public void insertPosition(int startHour, int endHour, String role, int ballotNum,
 			int employee1, int employee2) {
 		 try {

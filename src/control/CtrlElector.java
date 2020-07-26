@@ -73,5 +73,13 @@ class CtrlElector {
 			System.out.println("Elector phone update failure");
 		}
 	}
+	public void updateRide(int id, int rideId, String rideTime) {
+		try {
+			(new DbElectors()).updateRide(id, rideId, rideTime);; 
+		}
+		catch (Exception e) {
+			System.out.println("Elector phone update failure");
+		}
+	}
 	
 }

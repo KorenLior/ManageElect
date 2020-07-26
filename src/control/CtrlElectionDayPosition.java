@@ -59,8 +59,8 @@ public class CtrlElectionDayPosition {
 		for (ElectionDayPosition position:positions) {
 			Vector<Object> result = new Vector<Object>();
 			result.add(position.getKey());
-			result.add(position.getStartHour()+":00");
-			result.add(position.getEndHour()+":00");
+			result.add(position.getStartHour());
+			result.add(position.getEndHour());
 			result.add(position.getEmployee1());
 			results.add(result);
 		}
@@ -68,7 +68,7 @@ public class CtrlElectionDayPosition {
 	}
 	public Vector<Vector<Object>> getUnassignedRidersBranch(int branchNum){
 		DbElectionDayPositions dbElectionDayPositions = new DbElectionDayPositions();
-		ArrayList<Rider> riders = dbElectionDayPositions.getUnaasignedRiders(branchNum);
+		ArrayList<Rider> riders = dbElectionDayPositions.getUnassignedRiders(branchNum);
 		Vector<Vector<Object>> results = new Vector<Vector<Object>>();
 		for (Rider rider:riders) {
 			Vector<Object> result = new Vector<Object>();
@@ -81,6 +81,25 @@ public class CtrlElectionDayPosition {
 			result.add(rider.getElector().getAddress());
 			result.add(rider.getBallotAddress());
 			result.add(rider.getElector().getBallotNum());
+			results.add(result);
+		}
+		return results;
+	}
+	public Vector<Vector<Object>> getAssignedRidersBranch(int branchNum){
+		DbElectionDayPositions dbElectionDayPositions = new DbElectionDayPositions();
+		ArrayList<Rider> riders = dbElectionDayPositions.getAssignedRiders(branchNum);
+		Vector<Vector<Object>> results = new Vector<Vector<Object>>();
+		for (Rider rider:riders) {
+			Vector<Object> result = new Vector<Object>();
+			result.add(rider.getElector().getRideID());
+			result.add(rider.getRide().getTime());
+			result.add(rider.getElector().getId());
+			result.add(rider.getElector().getLastName()+" "+rider.getElector().getFirstName());
+			result.add(rider.getElector().getPhoneNumber());
+			result.add(rider.getElector().getAddress());
+			result.add(rider.getBallotAddress());
+			result.add(rider.getElector().getBallotNum());
+			result.add(rider.getRide().getEmployeeId());
 			results.add(result);
 		}
 		return results;

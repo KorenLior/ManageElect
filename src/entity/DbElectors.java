@@ -146,4 +146,29 @@ public class DbElectors {
 		 e.printStackTrace();
 		 }
 	}
+	public void updateRide(int electorId, int rideId ,String rideTime)
+	{
+		try {
+			 //System.out.println("here1" + ballotNum + votedFor+isValid+employeeId);
+			 Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+			 try (Connection conn = DriverManager.getConnection(ConstsDbManageElect.CONN_STR);
+					 
+				CallableStatement stmt = conn.prepareCall(ConstsDbManageElect.SQL_UPDATE_ELECTOR_RIDE)) {
+
+			
+		int i = 1;
+		stmt.setInt(i++, rideId);
+		stmt.setString(i++, rideTime);
+		stmt.setInt(i++, electorId);
+
+		 stmt.executeUpdate();
+		 } catch (SQLException e) {
+			 System.out.println("DbUpdateRide Failure2");
+		 e.printStackTrace();
+		 }
+		 } catch (ClassNotFoundException e) {
+			 System.out.println("DbUpdateRide ClassNotFound Failure2");
+		 e.printStackTrace();
+		 }
+	}
 }

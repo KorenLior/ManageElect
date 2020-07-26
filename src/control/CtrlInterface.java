@@ -121,7 +121,9 @@ public class CtrlInterface {
 	public void electorPhoneUpdate(int electorId, int phoneNum) {
 		(new CtrlElector()).updatePhone(electorId, phoneNum);
 	}
-	
+	public void electorRideUpdate(int electorId, int rideId, String rideTime) {
+		(new CtrlElector()).updateRide(electorId, rideId, rideTime);
+	}
 	public Vector<Vector<Object>> getElectionDayPositions(){
 		Vector<Vector<Object>> result = (new CtrlElectionDayPosition()).getPositionList();
 		return result;
@@ -141,6 +143,9 @@ public class CtrlInterface {
 		Vector<Vector<Object>> result = null;
 		if (!assigned) {
 			result = (new CtrlElectionDayPosition()).getUnassignedRidersBranch(1111);
+		}
+		if(assigned) {
+			result = (new CtrlElectionDayPosition()).getAssignedRidersBranch(1111);
 		}
 		return result;
 	}
