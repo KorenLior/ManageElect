@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import entity.Branch;
 import entity.DbGetBranchList;
-import entity.DbGetEmployeeList;
+import entity.DbEmployee;
 import entity.Employee;
 
 class CtrlLogin {
@@ -17,9 +17,9 @@ class CtrlLogin {
 	}
 	public CtrlLogin(int id) throws Exception {
 		
-		emplyeeList = (new DbGetEmployeeList()).getEmployees();
+		emplyeeList = (new DbEmployee()).getEmployees();
 		new DbGetBranchList();
-		ArrayList<Branch> branchList = DbGetBranchList.getBranches();
+		ArrayList<Branch> branchList = (new DbGetBranchList()).getBranches();
 		CtrlSystemInfo ctrlSystemInfo = new CtrlSystemInfo();
 		
 		

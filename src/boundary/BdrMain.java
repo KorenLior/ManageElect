@@ -72,6 +72,16 @@ public class BdrMain extends JFrame {
 		});
 		mnNewMenu.add(mntmManagePositions);
 		
+		JMenuItem mntmEmployees = new JMenuItem("Employees");
+		mntmEmployees.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				appEngine.bdrEmployee();
+			}
+		});
+		mnNewMenu.add(mntmEmployees);
+		
 		JMenuItem mntmSystem = new JMenuItem("System Management");
 		mnNewMenu.add(mntmSystem);
 		contentPane = new JPanel();

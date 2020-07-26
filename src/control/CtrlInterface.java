@@ -1,8 +1,11 @@
 package control;
 
+import java.util.ArrayList;
 import java.util.Vector;
 
-import entity.DbGetEmployeeList;
+import entity.Branch;
+import entity.DbEmployee;
+import entity.DbGetBranchList;
 import entity.Employee;
 
 public class CtrlInterface {
@@ -34,11 +37,11 @@ public class CtrlInterface {
 		if (ctrlLogin.getPermission()>-1)
 		{
 			this.loginId = employeeId;
-			me = new DbGetEmployeeList().getEmployee(employeeId);
+			me = new DbEmployee().getEmployee(employeeId);
 			System.out.println("loginId = "+loginId);
 		}
 	}
-	public int getPermmission()
+	public int getPermission()
 	{
 		if (loginId==-1)
 		{
@@ -124,28 +127,80 @@ public class CtrlInterface {
 	public void electorRideUpdate(int electorId, int rideId, String rideTime) {
 		(new CtrlElector()).updateRide(electorId, rideId, rideTime);
 	}
+	
+	
 	public Vector<Vector<Object>> getElectionDayPositions(){
-		Vector<Vector<Object>> result = (new CtrlElectionDayPosition()).getPositionList();
-		return result;
-	}
-	public Vector<Vector<Object>> getElectionDayPositionsBranch(){
-		if (loginId==-1) {
+		if (loginId<=0) {
 			return null;
 		}
-		Vector<Vector<Object>> result = (new CtrlElectionDayPosition()).getPositionBranchList(me.getBranchNum());
+		Vector<Vector<Object>> result = new Vector<Vector<Object>>();
+		if (getPermission()==2) {
+			result = (new CtrlElectionDayPosition()).getPositionList(me.getBranchNum());
+		}
+		if (getPermission()==3) {
+			result = (new CtrlElectionDayPosition()).getPositionList();
+		}
 		return result;
 	}
-	public Vector<Vector<Object>> getDriversBranch(){
-		Vector<Vector<Object>> result = (new CtrlElectionDayPosition()).getDriverBranchList(1111);
+	public Vector<Vector<Object>> getEmployees(){
+		if (getPermission()<=0) {
+			return null;
+		}
+		Vector<Vector<Object>> result = new Vector<Vector<Object>>();
+		if (getPermission()==2) {
+			result = (new CtrlEmployee()).getEmploeeVec(me.getBranchNum());
+		}
+		if (getPermission()==3) {
+			result = (new CtrlEmployee()).getEmploeeVec();
+		}
+		return result;
+	}
+	public Vector<Vector<Object>> getFullEmployees(){
+		if (getPermission()<=0) {
+			return null;
+		}
+		Vector<Vector<Object>> result = new Vector<Vector<Object>>();
+		if (getPermission()==2) {
+			result = (new CtrlEmployee()).getFullEmploeeVec(me.getBranchNum());
+		}
+		if (getPermission()==3) {
+			result = (new CtrlEmployee()).getFullEmploeeVec();
+		}
+		return result;
+	}
+	public Vector<Vector<Object>> getDrivers(){
+		if (getPermission()<=0) {
+			return null;
+		}
+		Vector<Vector<Object>> result = new Vector<Vector<Object>>();
+		if (getPermission()<=2) {
+			result = (new CtrlElectionDayPosition()).getDrivers(me.getBranchNum());
+		}
+		if (getPermission()==3) {
+			result = (new CtrlElectionDayPosition()).getDrivers();
+		}
 		return result;
 	}
 	public Vector<Vector<Object>> getRiders(boolean assigned){
-		Vector<Vector<Object>> result = null;
+		if (getPermission()<=0) {
+			return null;
+		}
+		Vector<Vector<Object>> result = new Vector<Vector<Object>>();
 		if (!assigned) {
-			result = (new CtrlElectionDayPosition()).getUnassignedRidersBranch(1111);
+			if (getPermission()<=2) {
+				result = (new CtrlElectionDayPosition()).getUnassignedRiders(me.getBranchNum());
+			}
+			else {
+				result = (new CtrlElectionDayPosition()).getUnassignedRiders();
+			}
 		}
 		if(assigned) {
-			result = (new CtrlElectionDayPosition()).getAssignedRidersBranch(1111);
+			if (getPermission()<=2) {
+				result = (new CtrlElectionDayPosition()).getAssignedRiders(me.getBranchNum());
+			}
+			else {
+				result = (new CtrlElectionDayPosition()).getAssignedRiders();
+			}
 		}
 		return result;
 	}
@@ -156,5 +211,20 @@ public class CtrlInterface {
 	public void insertPosition(int startHour, int endHour, String role, int ballotNum, int employee1, int employee2) {
 		CtrlElectionDayPosition ctrlElectionDayPosition = new CtrlElectionDayPosition();
 		ctrlElectionDayPosition.insertPosition(startHour, endHour, role, ballotNum, employee1, employee2);
+	}
+	public void addEmployee(int id, String birthDate, String gender, String nation, boolean car, int status, int kids, int branchNum) {
+		if (getPermission()==2) {
+			(new CtrlEmployee()).addEmployee(id, birthDate, gender, nation, car, status, kids, me.getBranchNum());
+		}
+		if (getPermission()==3) {
+			(new CtrlEmployee()).addEmployee(id, birthDate, gender, nation, car, status, kids, branchNum);
+		}
+	}
+	public ArrayList<Integer> getBranchList(){
+		ArrayList<Integer> result = new ArrayList<Integer>();
+		for (Branch branch:((new DbGetBranchList()).getBranches()) ) {
+			result.add(branch.getBranchNum());
+		}
+		return result;
 	}
 }

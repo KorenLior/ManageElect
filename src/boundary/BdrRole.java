@@ -38,7 +38,8 @@ public class BdrRole extends JFrame {
 	private JTextField txtEmployeeId1;
 	private JTextField txtEmployeeId2;
 	private JTextField txtBallotNumber;
-	private JTable table;
+	private JTable tablePositions;
+	private JTable tableEmployees;
 
 	/**
 	 * Launch the application.
@@ -61,7 +62,7 @@ public class BdrRole extends JFrame {
 	 */
 	public BdrRole() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 411, 349);
+		setBounds(100, 100, 483, 476);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -86,6 +87,17 @@ public class BdrRole extends JFrame {
 		});
 		mnNewMenu.add(mntmManagePositions);
 		
+		
+		JMenuItem mntmEmployees = new JMenuItem("Employees");
+		mntmEmployees.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				appEngine.bdrEmployee();
+			}
+		});
+		mnNewMenu.add(mntmEmployees);
+		
 		JMenuItem mntmSystem = new JMenuItem("System Management");
 		mnNewMenu.add(mntmSystem);
 		contentPane = new JPanel();
@@ -99,16 +111,16 @@ public class BdrRole extends JFrame {
 		txtEmployeeId2.setColumns(10);
 		
 		
-		Vector<String> columnNames = new Vector<String>();
-		columnNames.add("Position key");
-		columnNames.add("Start Hour");
-		columnNames.add("End Hour");
-		columnNames.add("Role");
-		columnNames.add("Ballot Num");
-		columnNames.add("Employee 1");
-		columnNames.add("Employee 2");
+		Vector<String> positionColumnNames = new Vector<String>();
+		positionColumnNames.add("Position key");
+		positionColumnNames.add("Start Hour");
+		positionColumnNames.add("End Hour");
+		positionColumnNames.add("Role");
+		positionColumnNames.add("Ballot Num");
+		positionColumnNames.add("Employee 1");
+		positionColumnNames.add("Employee 2");
 	
-		Vector<Vector<Object>> data = appEngine.ctrlInterface.getElectionDayPositions();
+		
 		JComboBox<String> comboBoxRole = new JComboBox();
 		comboBoxRole.addItem("Driver");
 		comboBoxRole.addItem("Ballot Rep");
@@ -228,9 +240,15 @@ public class BdrRole extends JFrame {
 				}
 				if (employee1!=0) {
 					appEngine.ctrlInterface.insertPosition(startHour, endHour, role, ballotNum, employee1, employee2);
+					tablePositions = new JTable(appEngine.ctrlInterface.getElectionDayPositions(),positionColumnNames);
+					scrollPane.setViewportView(tablePositions);
 				}
 			}
 		});    
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		
+		JLabel lblNewLabel_2 = new JLabel("Employees");
             
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
@@ -246,14 +264,11 @@ public class BdrRole extends JFrame {
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(txtEmployeeId1, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)
 							.addGap(6)
-							.addComponent(txtEmployeeId2, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
-							.addGap(0, 0, Short.MAX_VALUE))
+							.addComponent(txtEmployeeId2, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(4)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(btnAddPos)
-									.addPreferredGap(ComponentPlacement.RELATED, 113, Short.MAX_VALUE))
+								.addComponent(btnAddPos)
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addComponent(lblNewLabel)
 									.addPreferredGap(ComponentPlacement.RELATED)
@@ -261,18 +276,23 @@ public class BdrRole extends JFrame {
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addComponent(lblNewLabel_1)
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(comboBoxUntil, GroupLayout.PREFERRED_SIZE, 77, GroupLayout.PREFERRED_SIZE)))
-							.addGap(3)))
-					.addGap(318))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
-					.addGap(142))
+									.addComponent(comboBoxUntil, GroupLayout.PREFERRED_SIZE, 77, GroupLayout.PREFERRED_SIZE))))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(scrollPane)
+							.addGap(3))
+						.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 455, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblNewLabel_2))
+					.addGap(2))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-					.addGap(3)
+				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblNewLabel_2)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(scrollPane_1, GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel_3)
 						.addComponent(comboBoxRole, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -292,8 +312,17 @@ public class BdrRole extends JFrame {
 					.addGap(15))
 		);
 		
-		table = new JTable(data,columnNames);
-		scrollPane.setViewportView(table);
+		
+		Vector<Object> emploeeColumnNames = new Vector<Object>();
+		emploeeColumnNames.add("Employee ID");
+		emploeeColumnNames.add("Full Name");
+		emploeeColumnNames.add("Has Car");
+		tableEmployees = new JTable(appEngine.ctrlInterface.getEmployees(), emploeeColumnNames);
+		scrollPane_1.setViewportView(tableEmployees);
+		
+		Vector<Vector<Object>> data = appEngine.ctrlInterface.getElectionDayPositions();
+		tablePositions = new JTable(data,positionColumnNames);
+		scrollPane.setViewportView(tablePositions);
 		contentPane.setLayout(gl_contentPane);
 	}
 }

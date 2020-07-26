@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class DbGetBranchList {
 	
 	
-	public static ArrayList<Branch> getBranches() {
+	public ArrayList<Branch> getBranches() {
 		 ArrayList<Branch> results = new ArrayList<Branch>();
 		 try {
 		 Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");

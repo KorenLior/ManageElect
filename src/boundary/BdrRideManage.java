@@ -79,6 +79,16 @@ public class BdrRideManage extends JFrame {
 		});
 		mnNewMenu.add(mntmManagePositions);
 		
+		JMenuItem mntmEmployees = new JMenuItem("Employees");
+		mntmEmployees.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				appEngine.bdrEmployee();
+			}
+		});
+		mnNewMenu.add(mntmEmployees);
+		
 		JMenuItem mntmSystem = new JMenuItem("System Management");
 		mnNewMenu.add(mntmSystem);
 		contentPane = new JPanel();
@@ -188,7 +198,7 @@ public class BdrRideManage extends JFrame {
 		driversColumnNames.add("From");
 		driversColumnNames.add("Until");
 		driversColumnNames.add("Employee ID");
-		Vector<Vector<Object>> drivers = appEngine.ctrlInterface.getDriversBranch();
+		Vector<Vector<Object>> drivers = appEngine.ctrlInterface.getDrivers();
 		comboBoxRideID.addActionListener(new ActionListener() {	
 			@Override
 			public void actionPerformed(ActionEvent arg0) {

@@ -16,7 +16,7 @@ public class appEngine {
 	
 	public static void login(int id) {
 		ctrlInterface.login(id);
-		if (ctrlInterface.getPermmission()>=0) //login successful
+		if (ctrlInterface.getPermission()>=0) //login successful
 		{
 			main.setVisible(false);
 			main = new BdrMain();
@@ -33,25 +33,26 @@ public class appEngine {
 		popup.setVisible(true);
 	}
 	public static void bdrElectionDayPosition() {
-		if (ctrlInterface.getPermmission()>=3) {
+		if (ctrlInterface.getPermission()>=2) {
 			main.setVisible(false);
 			main = new BdrRole();
 			main.setVisible(true);
 		}
-		if (ctrlInterface.getPermmission()>=2) {
+	}
+	public static void bdrEmployee() {
+		if (ctrlInterface.getPermission()>=2) {
 			main.setVisible(false);
-			main = new BdrRole_Branch();
+			main = new BdrEmployee();
 			main.setVisible(true);
 		}
 	}
-	
 	public static String loadElector(int electorId){
 		String electorInfo = ctrlInterface.getElector(electorId);
 		return electorInfo;
 	}
 
 	public static void bdrRideManage() {
-		if (ctrlInterface.getPermmission()>=1) {
+		if (ctrlInterface.getPermission()>=1) {
 			main.setVisible(false);
 			main = new BdrRideManage();
 			main.setVisible(true);
