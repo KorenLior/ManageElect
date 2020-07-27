@@ -48,6 +48,7 @@ public class ConstsDbManageElect {
 			"WHERE (((TblElector.RideIDAssigned) Is Not Null Or (TblElector.RideIDAssigned)<>0))\r\n" + 
 			"GROUP BY TblElector.RideIDAssigned, TblElector.RideHour, TblElector.ID, TblElector.LastName, TblElector.FirstName, TblElector.PhoneNum, TblElector.Address, TblBallot.Address, TblElector.BallotNum, TblElectionDayPosition.EmpID1, TblBallot.BranchNum;\r\n" + 
 			"";
+	public static final String SQL_SEL_BALLOTS = "SELECT * FROM TblBallot";
 	private static String getDBPath() {
 		 try {
 		String path = ConstsDbManageElect.class.getProtectionDomain().getCodeSource().getLocation().getPath();

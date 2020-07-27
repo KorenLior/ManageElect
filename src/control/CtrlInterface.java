@@ -5,7 +5,7 @@ import java.util.Vector;
 
 import entity.Branch;
 import entity.DbEmployee;
-import entity.DbGetBranchList;
+import entity.DbBranches;
 import entity.Employee;
 
 public class CtrlInterface {
@@ -222,9 +222,15 @@ public class CtrlInterface {
 	}
 	public ArrayList<Integer> getBranchList(){
 		ArrayList<Integer> result = new ArrayList<Integer>();
-		for (Branch branch:((new DbGetBranchList()).getBranches()) ) {
+		for (Branch branch:((new DbBranches()).getBranches()) ) {
 			result.add(branch.getBranchNum());
 		}
 		return result;
+	}
+	public Vector<Vector<Object>> getBallotTable(){
+		return((new CtrlSystemInfo()).getBallotTable());
+	}
+	public Vector<Vector<Object>> getBranchTable(){
+		return((new CtrlSystemInfo()).getBranchTable());
 	}
 }

@@ -1,6 +1,7 @@
 package boundary;
 
 import control.CtrlInterface;
+import entity.JasperReportEntity;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -57,5 +58,10 @@ public class appEngine {
 			main = new BdrRideManage();
 			main.setVisible(true);
 		}
+	}
+
+	public static void popUpTransportReport() {
+		JasperReportEntity jasperReportEntity = new JasperReportEntity();
+		jasperReportEntity.compileTransportReport().setVisible(true);
 	}
 }

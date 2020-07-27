@@ -25,14 +25,13 @@ class CtrlElector {
 		}
 		return results;
 	}
-	public int getElectorPhone(int id) {
+	public String getElectorPhone(int id) {
 		Elector res = (new DbElectors()).getElector(id);
 		if (res==null)
 		{
-			return 0;
+			return null;
 		}
-		int result = res.getPhoneNumber();
-		return result;
+		return res.getPhoneNumber();
 	}
 	
 	public String getElectorName(int id) {

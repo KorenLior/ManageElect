@@ -6,9 +6,9 @@ public class Elector {
 	int id, ballotNum, serialNum, rideID;
 	String RideHour;
 	String firstName, lastName, address;
-	int phoneNumber;
+	String phoneNumber;
 	public Elector(int id, int ballotNum, int serialNum, int rideID, String rideHour, String firstName, 
-			String lastName, String address, int phoneNumber) {
+			String lastName, String address, String phoneNumber) {
 		super();
 		this.id = id;
 		this.ballotNum = ballotNum;
@@ -28,10 +28,10 @@ public class Elector {
 	}
 	
 
-	public int getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
-	public void setPhoneNumber(int phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 	public int getId() {

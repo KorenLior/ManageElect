@@ -3,7 +3,7 @@ package control;
 import java.util.ArrayList;
 
 import entity.Branch;
-import entity.DbGetBranchList;
+import entity.DbBranches;
 import entity.DbEmployee;
 import entity.Employee;
 
@@ -18,8 +18,8 @@ class CtrlLogin {
 	public CtrlLogin(int id) throws Exception {
 		
 		emplyeeList = (new DbEmployee()).getEmployees();
-		new DbGetBranchList();
-		ArrayList<Branch> branchList = (new DbGetBranchList()).getBranches();
+		new DbBranches();
+		ArrayList<Branch> branchList = (new DbBranches()).getBranches();
 		CtrlSystemInfo ctrlSystemInfo = new CtrlSystemInfo();
 		
 		

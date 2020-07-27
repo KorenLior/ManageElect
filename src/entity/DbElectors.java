@@ -93,7 +93,7 @@ public class DbElectors {
 			 String firstName;
 			 String lastName;
 			 String address;
-			 int phoneNum;
+			 String phoneNum;
 			 int ballotNum;
 			 int serialNum;
 			 int rideId;
@@ -106,7 +106,7 @@ public class DbElectors {
 			 firstName = rs.getString(i++);
 			 lastName = rs.getString(i++);
 			 address = rs.getString(i++);
-			 phoneNum = rs.getInt(i++);
+			 phoneNum = rs.getString(i++);
 			 ballotNum = rs.getInt(i++);
 			 serialNum = rs.getInt(i++);
 			 rideId = rs.getInt(i++);

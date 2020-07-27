@@ -54,7 +54,7 @@ public class BdrRideManage extends JFrame {
 	 */
 	public BdrRideManage() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1128, 592);
+		setBounds(100, 100, 803, 543);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -120,14 +120,21 @@ public class BdrRideManage extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("Scheduled Rides");
 		
 		JLabel lblNewLabel_2 = new JLabel("Electors Requiring Rides");
+		
+		JButton btnReport = new JButton("View Transportation Report");
+		btnReport.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				appEngine.popUpTransportReport();
+			}
+		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-						.addComponent(scrollPane_2, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 1092, Short.MAX_VALUE)
-						.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(scrollPane_2, GroupLayout.DEFAULT_SIZE, 1082, Short.MAX_VALUE)
+						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(txtElector, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(comboBoxRideID, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE)
@@ -135,17 +142,22 @@ public class BdrRideManage extends JFrame {
 							.addComponent(comboBoxRideTime, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(btnUpdateRide))
-						.addComponent(lblNewLabel, Alignment.LEADING)
-						.addComponent(scrollPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 1018, Short.MAX_VALUE)
-						.addComponent(lblNewLabel_1, Alignment.LEADING)
-						.addComponent(scrollPane_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 1008, Short.MAX_VALUE)
-						.addComponent(lblNewLabel_2, Alignment.LEADING))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(lblNewLabel)
+							.addPreferredGap(ComponentPlacement.RELATED, 588, Short.MAX_VALUE)
+							.addComponent(btnReport))
+						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 1082, Short.MAX_VALUE)
+						.addComponent(lblNewLabel_1)
+						.addComponent(scrollPane_1, GroupLayout.DEFAULT_SIZE, 1082, Short.MAX_VALUE)
+						.addComponent(lblNewLabel_2))
 					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(lblNewLabel)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblNewLabel)
+						.addComponent(btnReport))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
