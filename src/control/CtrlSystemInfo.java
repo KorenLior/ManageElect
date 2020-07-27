@@ -8,7 +8,7 @@ class CtrlSystemInfo {
 
 	private SystemInfo systemInfo;
 	public CtrlSystemInfo() {
-		DbGetSystem dbGetSystem = new DbGetSystem();
+		DbSystem dbGetSystem = new DbSystem();
 		systemInfo = dbGetSystem.getSystem();
 	}
 	public String getPartyName()
@@ -34,7 +34,7 @@ class CtrlSystemInfo {
 	}
 	public Vector<Vector<Object>> getBallotTable(){
 		Vector<Vector<Object>> results = new Vector<Vector<Object>>();
-		DbGetSystem dbGetSystem = new DbGetSystem();
+		DbSystem dbGetSystem = new DbSystem();
 		ArrayList<Ballot> ballots = dbGetSystem.getBallots();
 		for (Ballot ballot:ballots) {
 			Vector<Object> result = new Vector<Object>();
@@ -46,5 +46,11 @@ class CtrlSystemInfo {
 			results.add(result);
 		}
 		return results;
+	}
+	public void insertBranch(int branchNum, int managerId, int transportMngId) {
+		(new DbBranches()).addBranch(branchNum, managerId, transportMngId);
+	}
+	public void updateBallot(int branchNum, int ballotNum) {
+		(new DbSystem()).updateBallot(ballotNum, branchNum);
 	}
 }

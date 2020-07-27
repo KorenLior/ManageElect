@@ -233,4 +233,14 @@ public class CtrlInterface {
 	public Vector<Vector<Object>> getBranchTable(){
 		return((new CtrlSystemInfo()).getBranchTable());
 	}
+	public void insertBranch(int branchNum, int managerId, int transportMngId) {
+		if (getPermission()==3) {
+			(new CtrlSystemInfo()).insertBranch(branchNum, managerId, transportMngId);
+		}
+	}
+	public void updateBallot(int ballotNum, int branchNum) {
+		if (getPermission()==3) {
+			(new CtrlSystemInfo()).updateBallot(branchNum, ballotNum);
+		}
+	}
 }

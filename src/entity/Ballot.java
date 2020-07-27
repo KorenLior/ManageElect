@@ -5,9 +5,9 @@ public class Ballot {
 	String address;
 	boolean disbledAccess;
 	String positionInBuilding;
-	int phone;
+	String phone;
 	int branchNum;
-	public Ballot(int ballotNum, String address, boolean disbledAccess, String positionInBuilding, int phone,
+	public Ballot(int ballotNum, String address, boolean disbledAccess, String positionInBuilding, String phone,
 			int branchNum) {
 		super();
 		this.ballotNum = ballotNum;
@@ -29,7 +29,7 @@ public class Ballot {
 	public String getPositionInBuilding() {
 		return positionInBuilding;
 	}
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 	public int getBranchNum() {
