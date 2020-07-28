@@ -5,6 +5,7 @@ import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.GroupLayout;
@@ -12,6 +13,9 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -41,6 +45,10 @@ public class BdrElectorContact extends JDialog {
 	 */
 	public BdrElectorContact() {
 		setBounds(100, 100, 386, 196);
+		
+	
+		
+		
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setToolTipText("Elector Phone Number");
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -69,7 +77,7 @@ public class BdrElectorContact extends JDialog {
 				catch(Exception loadFail) {
 					System.out.println("elector ID not parsed");
 				}
-				String result = appEngine.loadElector(electorId);
+				String result = appEngine.ctrlInterface.getElector(electorId);
 				if (result!=null){
 					lblElector.setText(result);
 					setId(electorId);

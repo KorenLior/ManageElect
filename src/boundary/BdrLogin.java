@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -42,7 +43,8 @@ public class BdrLogin extends JFrame {
 	 * Create the frame.
 	 */
 	public BdrLogin() {
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		
 		setBounds(100, 100, 239, 161);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -55,17 +57,21 @@ public class BdrLogin extends JFrame {
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				int ID;
+				int id;
 				try
 				{
-				    ID = Integer.parseInt(textFieldEmployeeId.getText());
+				    id = Integer.parseInt(textFieldEmployeeId.getText());
+				    appEngine.ctrlInterface.login(id);
+				    if (appEngine.ctrlInterface.getPermission()>=0) {
+				    	(new BdrElectorBook()).setVisible(true);
+				    	closeGui(); 
+				    }
 				}
 				catch (NumberFormatException e)
 				{
 				    System.out.println("Not a number");
 				    return;
 				}
-				 appEngine.login(ID);
 			}
 		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
@@ -88,5 +94,7 @@ public class BdrLogin extends JFrame {
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
-
+	private void closeGui() {
+		this.dispose();
+	}
 }

@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -13,6 +14,9 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -51,8 +55,45 @@ public class BdrSystemManage extends JFrame {
 	 * Create the frame.
 	 */
 	public BdrSystemManage() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 485, 443);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenu mnNewMenu = new JMenu("Manage");
+		menuBar.add(mnNewMenu);
+		
+		JMenuItem mntmManageTransport = new JMenuItem("Transportation");
+		mntmManageTransport.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
+		mnNewMenu.add(mntmManageTransport);
+		
+		JMenuItem mntmManagePositions = new JMenuItem("Election Day Roles");
+		mntmManagePositions.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
+		mnNewMenu.add(mntmManagePositions);
+		
+		JMenuItem mntmEmployees = new JMenuItem("Employees");
+		mntmEmployees.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
+		mnNewMenu.add(mntmEmployees);
+		JMenuItem mntmSystem = new JMenuItem("System Management");
+		mnNewMenu.add(mntmSystem);
+		
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

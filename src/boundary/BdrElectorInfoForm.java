@@ -43,6 +43,7 @@ public class BdrElectorInfoForm extends JDialog {
 	 * Create the dialog.
 	 */
 	public BdrElectorInfoForm() {
+		
 		setBounds(100, 100, 351, 413);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -70,7 +71,7 @@ public class BdrElectorInfoForm extends JDialog {
 				catch(Exception loadFail) {
 					System.out.println("elector ID not parsed");
 				}
-				String result = appEngine.loadElector(electorId);
+				String result = appEngine.ctrlInterface.getElector(electorId);
 				if (result!=null){
 					lblElector.setText(result);
 					setId(electorId);
@@ -255,10 +256,10 @@ public class BdrElectorInfoForm extends JDialog {
 							}
 						}
 						if (electorId !=-1) {
-						appEngine.ctrlInterface.contactElector(electorId, dtf.format(now), ans, 
-								(String)comboBoxPlans.getSelectedItem(),(String)comboBoxSupports.getSelectedItem(), 
-								intrested, ride, 
-								from, until);
+							appEngine.ctrlInterface.contactElector(electorId, dtf.format(now), ans, 
+							(String)comboBoxPlans.getSelectedItem(),(String)comboBoxSupports.getSelectedItem(), 
+							intrested, ride, 
+							from, until);
 						}
 					}
 				});

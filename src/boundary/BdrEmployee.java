@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -53,8 +54,9 @@ public class BdrEmployee extends JFrame {
 	 * Create the frame.
 	 */
 	public BdrEmployee() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 639, 441);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
@@ -65,7 +67,7 @@ public class BdrEmployee extends JFrame {
 		mntmManageTransport.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
-				appEngine.bdrRideManage();
+				
 			}
 		});
 		mnNewMenu.add(mntmManageTransport);
@@ -73,7 +75,7 @@ public class BdrEmployee extends JFrame {
 		JMenuItem mntmManagePositions = new JMenuItem("Election Day Roles");
 		mntmManagePositions.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				appEngine.bdrElectionDayPosition();
+				
 			}
 		});
 		mnNewMenu.add(mntmManagePositions);
@@ -83,13 +85,15 @@ public class BdrEmployee extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				appEngine.bdrEmployee();
+				
 			}
 		});
 		mnNewMenu.add(mntmEmployees);
-		
 		JMenuItem mntmSystem = new JMenuItem("System Management");
 		mnNewMenu.add(mntmSystem);
+		
+		
+		
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -252,4 +256,5 @@ public class BdrEmployee extends JFrame {
 			}
 		});
 	}
+
 }

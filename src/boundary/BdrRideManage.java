@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.util.Vector;
 
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.GroupLayout;
@@ -53,8 +54,8 @@ public class BdrRideManage extends JFrame {
 	 * Create the frame.
 	 */
 	public BdrRideManage() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 803, 543);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -66,7 +67,7 @@ public class BdrRideManage extends JFrame {
 		mntmManageTransport.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
-				appEngine.bdrRideManage();
+				
 			}
 		});
 		mnNewMenu.add(mntmManageTransport);
@@ -74,7 +75,7 @@ public class BdrRideManage extends JFrame {
 		JMenuItem mntmManagePositions = new JMenuItem("Election Day Roles");
 		mntmManagePositions.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				appEngine.bdrElectionDayPosition();
+				
 			}
 		});
 		mnNewMenu.add(mntmManagePositions);
@@ -84,13 +85,13 @@ public class BdrRideManage extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				appEngine.bdrEmployee();
+				
 			}
 		});
 		mnNewMenu.add(mntmEmployees);
-		
 		JMenuItem mntmSystem = new JMenuItem("System Management");
 		mnNewMenu.add(mntmSystem);
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -133,7 +134,7 @@ public class BdrRideManage extends JFrame {
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(scrollPane_2, GroupLayout.DEFAULT_SIZE, 1082, Short.MAX_VALUE)
+						.addComponent(scrollPane_2, GroupLayout.PREFERRED_SIZE, 757, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(txtElector, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
@@ -144,11 +145,12 @@ public class BdrRideManage extends JFrame {
 							.addComponent(btnUpdateRide))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(lblNewLabel)
-							.addPreferredGap(ComponentPlacement.RELATED, 588, Short.MAX_VALUE)
-							.addComponent(btnReport))
-						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 1082, Short.MAX_VALUE)
+							.addGap(512)
+							.addComponent(btnReport)
+							.addGap(0, 0, Short.MAX_VALUE))
+						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 757, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblNewLabel_1)
-						.addComponent(scrollPane_1, GroupLayout.DEFAULT_SIZE, 1082, Short.MAX_VALUE)
+						.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 757, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblNewLabel_2))
 					.addContainerGap())
 		);
@@ -167,7 +169,7 @@ public class BdrRideManage extends JFrame {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(lblNewLabel_2)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(scrollPane_2, GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+					.addComponent(scrollPane_2, GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(txtElector, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)

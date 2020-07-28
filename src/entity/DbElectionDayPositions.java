@@ -172,7 +172,7 @@ public class DbElectionDayPositions {
 				 System.out.println("getDriversBranch() readFromDb Failure");
 			 }
 			 } catch (SQLException e) {
-				 System.out.println("getElectionDayPosition() readFromDb Failure");
+				 System.out.println("getDriversBranch() readFromDb Failure");
 			 e.printStackTrace();
 			 }
 		} catch (ClassNotFoundException e) {
@@ -200,7 +200,7 @@ public class DbElectionDayPositions {
 							 "Drive", 0, rs.getInt(i++), 0);	 
 				 }
 				 catch (Exception e) {
-					 System.out.println("ElectionDayPosition readDb Failure");
+					 System.out.println("getDriversBranch() readDb Failure");
 				 }
 				 results.add(result);
 				}
@@ -209,7 +209,7 @@ public class DbElectionDayPositions {
 				 System.out.println("getDrivers() readFromDb Failure");
 			 }
 			 } catch (SQLException e) {
-				 System.out.println("getElectionDayPosition() readFromDb Failure");
+				 System.out.println("getDriversBranch() readFromDb Failure");
 			 e.printStackTrace();
 			 }
 		} catch (ClassNotFoundException e) {

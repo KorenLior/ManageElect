@@ -20,7 +20,7 @@ public class appEngine {
 		if (ctrlInterface.getPermission()>=0) //login successful
 		{
 			main.setVisible(false);
-			main = new BdrMain();
+			main = new BdrElectorBook();
 			main.setVisible(true);
 		}
 	}

@@ -27,7 +27,10 @@ public class ConstsDbManageElect {
 	public static final String SQL_SEL_DAYPOSITIONS_EMPLOYEE2 = "SELECT * FROM TblElectionDayPosition WHERE EmpID2=";
 	public static final String SQL_SEL_EMPLOYEE = "SELECT * FROM TblEmployee WHERE ID=";
 	public static final String SQL_SEL_DRIVERS_BRANCH = "{ call QryDrivers_ByBranch(?) }";
-	public static final String SQL_SEL_DRIVERS = "{ call QryDrivers }";
+	public static final String SQL_SEL_DRIVERS = "SELECT TblElectionDayPosition.JobID, TblElectionDayPosition.StartHour, TblElectionDayPosition.EndHour, TblElectionDayPosition.EmpID1\r\n" + 
+			"FROM TblElectionDayPosition\r\n" + 
+			"WHERE (((TblElectionDayPosition.Role)=\"Drive\"))\r\n" + 
+			"GROUP BY TblElectionDayPosition.JobID, TblElectionDayPosition.StartHour, TblElectionDayPosition.EndHour, TblElectionDayPosition.EmpID1;";
 	public static final String SQL_SEL_UNASSRIDERS = "SELECT TblElector.ID, TblElector.FirstName, TblElector.LastName, TblElector.PhoneNum, TblElectorInfo.CallDate, TblElectorInfo.PickupFrom, TblElectorInfo.PickupTo, TblElector.Address, TblBallot.Address, TblElector.BallotNum\r\n" + 
 			"FROM (TblBallot INNER JOIN TblElector ON TblBallot.BallotNum = TblElector.BallotNum) INNER JOIN TblElectorInfo ON TblElector.ID = TblElectorInfo.ElectorID\r\n" + 
 			"WHERE (((TblElector.RideIDAssigned)=0 Or (TblElector.RideIDAssigned) Is Null) AND ((TblElectorInfo.NeedRide)=Yes))\r\n" + 
