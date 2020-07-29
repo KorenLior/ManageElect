@@ -75,21 +75,22 @@ public class BdrEmployee extends JFrame {
 		JMenuItem mntmManagePositions = new JMenuItem("Election Day Roles");
 		mntmManagePositions.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				appEngine.bdrElectionDayPosition();
 			}
 		});
 		mnNewMenu.add(mntmManagePositions);
 		
 		JMenuItem mntmEmployees = new JMenuItem("Employees");
-		mntmEmployees.addActionListener(new ActionListener() {
+		mnNewMenu.add(mntmEmployees);
+		
+		JMenuItem mntmSystem = new JMenuItem("System Management");
+		mntmSystem.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
+				appEngine.bdrSystem();
 			}
 		});
-		mnNewMenu.add(mntmEmployees);
-		JMenuItem mntmSystem = new JMenuItem("System Management");
 		mnNewMenu.add(mntmSystem);
 		
 		

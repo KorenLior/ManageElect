@@ -43,6 +43,10 @@ public class BdrElectorContact extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
+	public BdrElectorContact(int elector) {
+		super();
+		this.electorId = elector;
+	}
 	public BdrElectorContact() {
 		setBounds(100, 100, 386, 196);
 		
@@ -89,15 +93,15 @@ public class BdrElectorContact extends JDialog {
 			gl_contentPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPanel.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-							.addComponent(lblElector, GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
-							.addGroup(gl_contentPanel.createSequentialGroup()
-								.addComponent(tfElector, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(btnLoad)
-								.addContainerGap(231, Short.MAX_VALUE)))
-						.addGroup(Alignment.TRAILING, gl_contentPanel.createSequentialGroup()
+					.addGroup(gl_contentPanel.createParallelGroup(Alignment.TRAILING)
+						.addComponent(lblElector, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+						.addGroup(Alignment.LEADING, gl_contentPanel.createSequentialGroup()
+							.addComponent(tfElector, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnLoad)
+							.addContainerGap(167, Short.MAX_VALUE))
+						.addGroup(Alignment.LEADING, gl_contentPanel.createSequentialGroup()
+							.addGap(233)
 							.addComponent(tfPhone, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addGap(31))))
 		);
@@ -124,16 +128,16 @@ public class BdrElectorContact extends JDialog {
 				btnUpdate.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						if (electorId>-1) {
-							int phoneNum = -1;
+							String phone = null;
 							try{
-								String idTxt = tfPhone.getText();
-								phoneNum = Integer.parseInt(idTxt);
+								phone = tfPhone.getText();
 							}
 							catch(Exception loadFail) {
 								System.out.println("Phone Number not parsed");
 							}
-							if (phoneNum>0) {
-								appEngine.ctrlInterface.electorPhoneUpdate(electorId, phoneNum);
+							if (phone!=null) {
+								appEngine.ctrlInterface.electorPhoneUpdate(electorId, phone);
+								closeGui();
 							}
 						}
 					}
@@ -149,8 +153,9 @@ public class BdrElectorContact extends JDialog {
 			}
 		}
 	}
-	
-	
+	private void closeGui() {
+		this.dispose();
+	}
 	private void setId(int id) {
 		electorId = id;
 	}

@@ -75,17 +75,13 @@ public class BdrRole extends JFrame {
 		mntmManageTransport.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
-				
+				appEngine.bdrRideManage();
 			}
 		});
 		mnNewMenu.add(mntmManageTransport);
 		
 		JMenuItem mntmManagePositions = new JMenuItem("Election Day Roles");
-		mntmManagePositions.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-			}
-		});
+		
 		mnNewMenu.add(mntmManagePositions);
 		
 		JMenuItem mntmEmployees = new JMenuItem("Employees");
@@ -93,11 +89,18 @@ public class BdrRole extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
+				appEngine.bdrEmployee();
 			}
 		});
 		mnNewMenu.add(mntmEmployees);
 		JMenuItem mntmSystem = new JMenuItem("System Management");
+		mntmSystem.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				appEngine.bdrSystem();
+			}
+		});
 		mnNewMenu.add(mntmSystem);
 		
 		
@@ -223,6 +226,7 @@ public class BdrRole extends JFrame {
 				}
 				catch(Exception loadFail) {
 					System.out.println("elector ID not parsed");
+					return;
 				}
 				if (role=="Rep") {
 					try{
@@ -231,6 +235,7 @@ public class BdrRole extends JFrame {
 					}
 					catch(Exception loadFail) {
 						System.out.println("elector ID not parsed");
+						return;
 					}
 					try{
 						String ballottxt = txtBallotNumber.getText();
@@ -238,6 +243,7 @@ public class BdrRole extends JFrame {
 					}
 					catch(Exception loadFail) {
 						System.out.println("ballotNum not parsed");
+						return;
 					}
 				}
 				if (employee1!=0) {

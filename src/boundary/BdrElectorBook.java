@@ -59,6 +59,9 @@ public class BdrElectorBook extends JFrame {
 		JMenu mnNewMenu = new JMenu("Manage");
 		menuBar.add(mnNewMenu);
 		
+		JMenuItem mntmElectorBook = new JMenuItem("Elector Book");
+		mnNewMenu.add(mntmElectorBook);
+		
 		JMenuItem mntmManageTransport = new JMenuItem("Transportation");
 		mntmManageTransport.addActionListener(new ActionListener() {
 
@@ -144,5 +147,15 @@ public class BdrElectorBook extends JFrame {
 		tableElectors = new JTable(appEngine.ctrlInterface.getElectorsTable(),columnNames);
 		scrollPane.setViewportView(tableElectors);
 		contentPane.setLayout(gl_contentPane);
+	}
+	public void refreshTable() {
+		Vector<String> columnNames = new Vector<String>();
+		columnNames.add("ID");
+		columnNames.add("First Name");
+		columnNames.add("Last Name");
+		columnNames.add("Address");
+		columnNames.add("Phone");
+		columnNames.add("Ballot");
+		tableElectors = new JTable(appEngine.ctrlInterface.getElectorsTable(),columnNames);
 	}
 }

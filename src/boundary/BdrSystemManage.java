@@ -68,7 +68,7 @@ public class BdrSystemManage extends JFrame {
 		mntmManageTransport.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
-				
+				appEngine.bdrRideManage();
 			}
 		});
 		mnNewMenu.add(mntmManageTransport);
@@ -76,7 +76,7 @@ public class BdrSystemManage extends JFrame {
 		JMenuItem mntmManagePositions = new JMenuItem("Election Day Roles");
 		mntmManagePositions.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				appEngine.bdrElectionDayPosition();
 			}
 		});
 		mnNewMenu.add(mntmManagePositions);
@@ -86,7 +86,7 @@ public class BdrSystemManage extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
+				appEngine.bdrEmployee();
 			}
 		});
 		mnNewMenu.add(mntmEmployees);

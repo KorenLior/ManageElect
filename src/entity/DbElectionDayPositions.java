@@ -234,7 +234,7 @@ public class DbElectionDayPositions {
 				 int id = rs.getInt(i++);
 				 String firstName = rs.getString(i++);
 				 String lastName = rs.getString(i++);
-				 int phoneNum = rs.getInt(i++);
+				 String phoneNum = rs.getString(i++);
 				 String callDate = rs.getString(i++);
 				 int from = rs.getInt(i++);
 				 int until = rs.getInt(i++);
@@ -260,6 +260,7 @@ public class DbElectionDayPositions {
 		return results;
 	}
 	public ArrayList<Rider> getUnassignedRiders(){
+		System.out.println("here");
 		ArrayList<Rider> results = new ArrayList<Rider>();
 		 try {
 		 Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
@@ -272,22 +273,25 @@ public class DbElectionDayPositions {
 			 Rider result = null;
 			 try
 			 {
+				 System.out.println("here1");
 				 int id = rs.getInt(i++);
 				 String firstName = rs.getString(i++);
 				 String lastName = rs.getString(i++);
-				 int phoneNum = rs.getInt(i++);
+				 String phoneNum = rs.getString(i++);
 				 String callDate = rs.getString(i++);
 				 int from = rs.getInt(i++);
 				 int until = rs.getInt(i++);
 				 String electorAddress = rs.getString(i++);
 				 String ballotAddress = rs.getString(i++);
 				 int ballotNum = rs.getInt(i++);
-				 result = new Rider((new DbElectors().getElector(id)), from, until, ballotAddress, callDate, new Ride());	 
+				 result = new Rider((new DbElectors().getElector(id)), from, until, ballotAddress, callDate, new Ride());
+				 System.out.println("here2");
 			 }
 			 catch (Exception e) {
 				// TODO: handle exception
 				 System.out.println("UnassignedRiders readDb Failure");
 			 }
+			 System.out.println("here3");
 			 results.add(result);
 		 }
 		 } catch (SQLException e) {
@@ -319,7 +323,7 @@ public class DbElectionDayPositions {
 				 int electorId = rs.getInt(i++);
 				 String lastName = rs.getString(i++);
 				 String firstName = rs.getString(i++);
-				 int phoneNum = rs.getInt(i++);
+				 String phoneNum = rs.getString(i++);
 				 String elecctorAddress = rs.getString(i++);
 				 String ballotAddress = rs.getString(i++);
 				 int ballotNum = rs.getInt(i++);
@@ -360,7 +364,7 @@ public class DbElectionDayPositions {
 				 int electorId = rs.getInt(i++);
 				 String lastName = rs.getString(i++);
 				 String firstName = rs.getString(i++);
-				 int phoneNum = rs.getInt(i++);
+				 String phoneNum = rs.getString(i++);
 				 String elecctorAddress = rs.getString(i++);
 				 String ballotAddress = rs.getString(i++);
 				 int ballotNum = rs.getInt(i++);
@@ -389,26 +393,15 @@ public class DbElectionDayPositions {
 	
 	
 	
-	public void insertPosition(int startHour, int endHour, String role, int ballotNum,
+	public void insertPositionRep(int startHour, int endHour, int ballotNum,
 			int employee1, int employee2) {
 		 try {
 			 Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			 try (Connection conn = DriverManager.getConnection(ConstsDbManageElect.CONN_STR);
 					 
-				CallableStatement stmt = conn.prepareCall(ConstsDbManageElect.SQL_INS_DAYPOSITION)) {
+				CallableStatement stmt = conn.prepareCall("INSERT INTO TblElectionDayPosition ( StartHour, EndHour, Role, BallotNum, EmpID1, EmpID2 )"
+						+ " VALUES ("+startHour+"," +endHour+","+"Rep"+","+ ballotNum+","+ employee1+","+ employee2+");")) {
 
-	/* (CallDate, GotAnswer, PlanToVote, SupportTheParty, InterestInClass, NeedRide, PickupFrom, PickupTo, ElectorId, EmployeeId)*/
-			
-		int i = 1;
-		 //stmt.setString(i++, callDate);
-		
-		
-		 stmt.setInt(i++, startHour);
-		 stmt.setInt(i++, endHour);
-		 stmt.setString(i++, role);
-		 stmt.setInt(i++, ballotNum);
-		 stmt.setInt(i++, employee1);
-		 stmt.setInt(i++, employee2);
 		 stmt.executeUpdate();
 		 } catch (SQLException e) {
 			 System.out.println("insertPosition Failure2");
@@ -419,5 +412,22 @@ public class DbElectionDayPositions {
 		 e.printStackTrace();
 		 }
 	}
-	
+	public void insertNotRep(int startHour, int endHour, String role, int employee1) {
+		 try {
+			 Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+			 try (Connection conn = DriverManager.getConnection(ConstsDbManageElect.CONN_STR);
+					 
+				CallableStatement stmt = conn.prepareCall("INSERT INTO TblElectionDayPosition ( StartHour, EndHour, Role, BallotNum, EmpID1, EmpID2 )"
+						+ " VALUES ("+startHour+","+ endHour+","+ role+", null, "+employee1+", null);")) {
+
+				 stmt.executeUpdate();
+				 } catch (SQLException e) {
+					 System.out.println("insertPosition Failure2");
+				 e.printStackTrace();
+				 }
+			 } catch (ClassNotFoundException e) {
+				 System.out.println("insertPosition ClassNotFound Failure2");
+			 e.printStackTrace();
+		 }
+	}
 }

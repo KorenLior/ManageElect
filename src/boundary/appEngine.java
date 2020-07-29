@@ -16,9 +16,12 @@ public class appEngine {
 	}
 	
 	public static void login(int id) {
+		System.out.println("permission="+ctrlInterface.getPermission());
 		ctrlInterface.login(id);
+		System.out.println("permission="+ctrlInterface.getPermission());
 		if (ctrlInterface.getPermission()>=0) //login successful
 		{
+			
 			main.setVisible(false);
 			main = new BdrElectorBook();
 			main.setVisible(true);
@@ -64,4 +67,18 @@ public class appEngine {
 		JasperReportEntity jasperReportEntity = new JasperReportEntity();
 		jasperReportEntity.compileTransportReport().setVisible(true);
 	}
+
+	public static void bdrElectorBook() {
+		main.setVisible(false);
+		main = new BdrElectorBook();
+		main.setVisible(true);
+	}
+
+	public static void bdrSystem() {
+		if (ctrlInterface.getPermission()>=3) {
+		main.setVisible(false);
+		main = new BdrSystemManage();
+		main.setVisible(true);
+		}
+	}		
 }

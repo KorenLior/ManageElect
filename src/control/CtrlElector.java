@@ -64,7 +64,7 @@ class CtrlElector {
 		return result;
 	}
 	
-	public void updatePhone(int id, int phoneNum) {
+	public void updatePhone(int id, String phoneNum) {
 		try {
 			(new DbElectors()).updatePhone(id, phoneNum); 
 		}

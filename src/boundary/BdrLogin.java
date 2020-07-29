@@ -61,9 +61,9 @@ public class BdrLogin extends JFrame {
 				try
 				{
 				    id = Integer.parseInt(textFieldEmployeeId.getText());
-				    appEngine.ctrlInterface.login(id);
+				    appEngine.login(id);
 				    if (appEngine.ctrlInterface.getPermission()>=0) {
-				    	(new BdrElectorBook()).setVisible(true);
+				    	appEngine.bdrElectorBook();
 				    	closeGui(); 
 				    }
 				}

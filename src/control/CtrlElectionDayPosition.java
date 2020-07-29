@@ -13,7 +13,12 @@ public class CtrlElectionDayPosition {
 	public boolean insertPosition(int startHour, int endHour, String role, int ballotNum, int employee1, int employee2) {
 		if (positionValid(startHour, endHour, role, ballotNum, employee1, employee2)) {
 			DbElectionDayPositions dbElectionDayPositions = new DbElectionDayPositions();
-			dbElectionDayPositions.insertPosition(startHour, endHour, role, ballotNum, employee1, employee2);
+			if (role=="Rep") {
+				dbElectionDayPositions.insertPositionRep(startHour, endHour, ballotNum, employee1, employee2);
+			}
+			else {
+				dbElectionDayPositions.insertNotRep(startHour, endHour, role, employee1);
+			}
 			return true;
 		}
 		return false;

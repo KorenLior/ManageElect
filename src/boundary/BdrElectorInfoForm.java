@@ -260,6 +260,7 @@ public class BdrElectorInfoForm extends JDialog {
 							(String)comboBoxPlans.getSelectedItem(),(String)comboBoxSupports.getSelectedItem(), 
 							intrested, ride, 
 							from, until);
+							closeGui();
 						}
 					}
 				});

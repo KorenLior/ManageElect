@@ -21,7 +21,8 @@ public class ConstsDbManageElect {
 	public static final String SQL_SEL_DAYPOSITIONS_BRANCH2 = "))\r\n" + 
 			"GROUP BY TblElectionDayPosition.JobID, TblElectionDayPosition.StartHour, TblElectionDayPosition.EndHour, TblElectionDayPosition.Role, TblElectionDayPosition.BallotNum, TblElectionDayPosition.EmpID1, TblElectionDayPosition.EmpID2;";
 	public static final String SQL_SEL_DAYPOSITIONS = "SELECT * FROM TblElectionDayPosition";
-	public static final String SQL_INS_DAYPOSITION =  "{ call QryNewElectionDayPosition(?,?,?,?,?,?) }";
+	public static final String SQL_INS_DAYPOSITION_REP =  "{ call QryNewElectionDayRep(?,?,?,?,?) }";
+	public static final String SQL_INS_DAYPOSITION_NOTREP =  "{ call QryNewElectionDayPosition_NotRep(?,?,?,?) }";
 	public static final String SQL_INS_EMPLOYEE =  "{ call QryNewEmployee(?,?,?,?,?,?,?,?) }";
 	public static final String SQL_SEL_DAYPOSITIONS_EMPLOYEE1 = "SELECT * FROM TblElectionDayPosition WHERE EmpID1=";
 	public static final String SQL_SEL_DAYPOSITIONS_EMPLOYEE2 = "SELECT * FROM TblElectionDayPosition WHERE EmpID2=";
@@ -34,8 +35,7 @@ public class ConstsDbManageElect {
 	public static final String SQL_SEL_UNASSRIDERS = "SELECT TblElector.ID, TblElector.FirstName, TblElector.LastName, TblElector.PhoneNum, TblElectorInfo.CallDate, TblElectorInfo.PickupFrom, TblElectorInfo.PickupTo, TblElector.Address, TblBallot.Address, TblElector.BallotNum\r\n" + 
 			"FROM (TblBallot INNER JOIN TblElector ON TblBallot.BallotNum = TblElector.BallotNum) INNER JOIN TblElectorInfo ON TblElector.ID = TblElectorInfo.ElectorID\r\n" + 
 			"WHERE (((TblElector.RideIDAssigned)=0 Or (TblElector.RideIDAssigned) Is Null) AND ((TblElectorInfo.NeedRide)=Yes))\r\n" + 
-			"GROUP BY TblElector.ID, TblElector.FirstName, TblElector.LastName, TblElector.PhoneNum, TblElectorInfo.CallDate, TblElectorInfo.PickupFrom, TblElectorInfo.PickupTo, TblElector.Address, TblBallot.Address, TblElector.BallotNum, TblBallot.BranchNum;\r\n" + 
-			"";
+			"GROUP BY TblElector.ID, TblElector.FirstName, TblElector.LastName, TblElector.PhoneNum, TblElectorInfo.CallDate, TblElectorInfo.PickupFrom, TblElectorInfo.PickupTo, TblElector.Address, TblBallot.Address, TblElector.BallotNum, TblBallot.BranchNum;\r\n";
 	public static final String SQL_SEL_UNASSRIDERS_BRANCH1 ="SELECT TblElector.ID, TblElector.FirstName, TblElector.LastName, TblElector.PhoneNum, TblElectorInfo.CallDate, TblElectorInfo.PickupFrom, TblElectorInfo.PickupTo, TblElector.Address, TblBallot.Address, TblElector.BallotNum\r\n" + 
 			"FROM (TblElector INNER JOIN TblBallot ON TblElector.BallotNum = TblBallot.BallotNum) INNER JOIN TblElectorInfo ON TblElector.ID = TblElectorInfo.ElectorID\r\n" + 
 			"WHERE (((TblElector.RideIDAssigned)=0 Or (TblElector.RideIDAssigned) Is Null) AND ((TblElectorInfo.NeedRide)=Yes) AND ((TblBallot.BranchNum)=";

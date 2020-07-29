@@ -121,7 +121,7 @@ public class CtrlInterface {
 		
 	}
 	
-	public void electorPhoneUpdate(int electorId, int phoneNum) {
+	public void electorPhoneUpdate(int electorId, String phoneNum) {
 		(new CtrlElector()).updatePhone(electorId, phoneNum);
 	}
 	public void electorRideUpdate(int electorId, int rideId, String rideTime) {

@@ -121,7 +121,7 @@ public class DbElectors {
 	}
 	
 	
-	public void updatePhone(int electorId, int phoneNum)
+	public void updatePhone(int electorId, String phoneNum)
 	{
 		try {
 			 //System.out.println("here1" + ballotNum + votedFor+isValid+employeeId);
@@ -133,7 +133,7 @@ public class DbElectors {
 			
 		int i = 1;
 
-		stmt.setInt(i++, phoneNum);
+		stmt.setString(i++, phoneNum);
 		stmt.setInt(i++, electorId);
 
 		 stmt.executeUpdate();
