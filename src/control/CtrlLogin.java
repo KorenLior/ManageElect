@@ -20,7 +20,7 @@ class CtrlLogin {
 		emplyeeList = (new DbEmployee()).getEmployees();
 		new DbBranches();
 		ArrayList<Branch> branchList = (new DbBranches()).getBranches();
-		CtrlSystemInfo ctrlSystemInfo = new CtrlSystemInfo();
+		CtrlSystem ctrlSystemInfo = new CtrlSystem();
 		
 		
 		if (ctrlSystemInfo.getManagerId()==id)

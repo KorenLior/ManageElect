@@ -4,10 +4,10 @@ import java.util.Vector;
 
 import entity.*;
 
-class CtrlSystemInfo {
+class CtrlSystem {
 
 	private SystemInfo systemInfo;
-	public CtrlSystemInfo() {
+	public CtrlSystem() {
 		DbSystem dbGetSystem = new DbSystem();
 		systemInfo = dbGetSystem.getSystem();
 	}
@@ -47,10 +47,16 @@ class CtrlSystemInfo {
 		}
 		return results;
 	}
-	public void insertBranch(int branchNum, int managerId, int transportMngId) {
-		(new DbBranches()).addBranch(branchNum, managerId, transportMngId);
+	public void insertBranch(int branchNum) {
+		(new DbBranches()).addBranch(branchNum);
 	}
 	public void updateBallot(int branchNum, int ballotNum) {
 		(new DbSystem()).updateBallot(ballotNum, branchNum);
+	}
+	public void updateBranchManager(int branch, int id) {
+		(new DbSystem()).updateBranchManager(branch,id);
+	}
+	public void updateBranchTransportManager(int branch, int id) {
+		(new DbSystem()).updateBranchTransportMan(branch,id);
 	}
 }

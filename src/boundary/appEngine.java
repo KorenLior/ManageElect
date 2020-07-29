@@ -76,9 +76,9 @@ public class appEngine {
 
 	public static void bdrSystem() {
 		if (ctrlInterface.getPermission()>=3) {
-		main.setVisible(false);
-		main = new BdrSystemManage();
-		main.setVisible(true);
+			main.setVisible(false);
+			main = new BdrSystemManage();
+			main.setVisible(true);
 		}
 	}		
 }

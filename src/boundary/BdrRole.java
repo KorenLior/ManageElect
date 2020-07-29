@@ -126,8 +126,8 @@ public class BdrRole extends JFrame {
 		positionColumnNames.add("Employee 2");
 	
 		
-		JComboBox<String> comboBoxRole = new JComboBox();
-		comboBoxRole.addItem("Driver");
+		JComboBox<String> comboBoxRole = new JComboBox<String>();
+		comboBoxRole.addItem("Drive");
 		comboBoxRole.addItem("Ballot Rep");
 		comboBoxRole.addItem("Branch");
 		comboBoxRole.addActionListener(new ActionListener() {
@@ -215,11 +215,7 @@ public class BdrRole extends JFrame {
 				ballotNum = employee1 = employee2 = 0;
 				startHour = comboBoxFrom.getSelectedIndex()+8;
 				endHour = comboBoxUntil.getSelectedIndex() +9;
-				switch (comboBoxRole.getSelectedIndex()) {
-					case 0: role = "Drive";
-					case 1: role = "Rep";
-					case 2: role = "Branch";
-				}
+				role = (String)comboBoxRole.getSelectedItem();
 				try{
 					String id1Txt = txtEmployeeId1.getText();
 					employee1 = Integer.parseInt(id1Txt);
@@ -228,7 +224,7 @@ public class BdrRole extends JFrame {
 					System.out.println("elector ID not parsed");
 					return;
 				}
-				if (role=="Rep") {
+				if (role=="Ballot Rep") {
 					try{
 						String id2Txt = txtEmployeeId2.getText();
 						employee2 = Integer.parseInt(id2Txt);
@@ -245,6 +241,7 @@ public class BdrRole extends JFrame {
 						System.out.println("ballotNum not parsed");
 						return;
 					}
+					role = "Rep";
 				}
 				if (employee1!=0) {
 					appEngine.ctrlInterface.insertPosition(startHour, endHour, role, ballotNum, employee1, employee2);

@@ -13,7 +13,7 @@ public class CtrlInterface {
 	private CtrlLogin ctrlLogin;
 	private int loginId = -1;
 	private int manager;
-	private static CtrlSystemInfo ctrlSystemInfo;
+	private static CtrlSystem ctrlSystemInfo;
 	private Employee me = null;
 	protected Object clone() throws CloneNotSupportedException {
 		// TODO Auto-generated method stub
@@ -21,7 +21,7 @@ public class CtrlInterface {
 	}
 	public CtrlInterface() {
 		
-		ctrlSystemInfo = new CtrlSystemInfo();
+		ctrlSystemInfo = new CtrlSystem();
 		manager = ctrlSystemInfo.getManagerId();
 		
 	}
@@ -148,10 +148,10 @@ public class CtrlInterface {
 		}
 		Vector<Vector<Object>> result = new Vector<Vector<Object>>();
 		if (getPermission()==2) {
-			result = (new CtrlEmployee()).getEmploeeVec(me.getBranchNum());
+			result = (new CtrlEmployee()).getEmployeeVec(me.getBranchNum());
 		}
 		if (getPermission()==3) {
-			result = (new CtrlEmployee()).getEmploeeVec();
+			result = (new CtrlEmployee()).getEmployeeVec();
 		}
 		return result;
 	}
@@ -161,10 +161,10 @@ public class CtrlInterface {
 		}
 		Vector<Vector<Object>> result = new Vector<Vector<Object>>();
 		if (getPermission()==2) {
-			result = (new CtrlEmployee()).getFullEmploeeVec(me.getBranchNum());
+			result = (new CtrlEmployee()).getFullEmployeeVec(me.getBranchNum());
 		}
 		if (getPermission()==3) {
-			result = (new CtrlEmployee()).getFullEmploeeVec();
+			result = (new CtrlEmployee()).getFullEmployeeVec();
 		}
 		return result;
 	}
@@ -228,19 +228,29 @@ public class CtrlInterface {
 		return result;
 	}
 	public Vector<Vector<Object>> getBallotTable(){
-		return((new CtrlSystemInfo()).getBallotTable());
+		return((new CtrlSystem()).getBallotTable());
 	}
 	public Vector<Vector<Object>> getBranchTable(){
-		return((new CtrlSystemInfo()).getBranchTable());
+		return((new CtrlSystem()).getBranchTable());
 	}
-	public void insertBranch(int branchNum, int managerId, int transportMngId) {
+	public void insertBranch(int branchNum) {
 		if (getPermission()==3) {
-			(new CtrlSystemInfo()).insertBranch(branchNum, managerId, transportMngId);
+			(new CtrlSystem()).insertBranch(branchNum);
 		}
 	}
 	public void updateBallot(int ballotNum, int branchNum) {
 		if (getPermission()==3) {
-			(new CtrlSystemInfo()).updateBallot(branchNum, ballotNum);
+			(new CtrlSystem()).updateBallot(branchNum, ballotNum);
 		}
+	}
+	public void updateEmployee(int id, String birthDate, String gender, String nationality, boolean car, int status,
+			int kids, int branch) {
+		(new CtrlEmployee()).updateEmployee(id, birthDate, gender, nationality, car, status, kids, branch);
+	}
+	public void updateBranchManager(int branch, int id) {
+		(new CtrlSystem()).updateBranchManager(branch, id);
+	}
+	public void updateBranchTransportManager(int branch, int id) {
+		(new CtrlSystem()).updateBranchTransportManager(branch, id);
 	}
 }

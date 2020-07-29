@@ -112,4 +112,47 @@ public class DbSystem {
 		 e.printStackTrace();
 		 }
 	}
+
+	public void updateBranchManager(int branch, int id) {
+		try {
+			 Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+			 try (Connection conn = DriverManager.getConnection(ConstsDbManageElect.CONN_STR);
+					 
+				CallableStatement stmt = conn.prepareCall(ConstsDbManageElect.SQL_UPDATE_BRANCHMAN)) {
+			int i = 1;
+	
+			stmt.setInt(i++, id);
+			stmt.setInt(i++, branch);
+	
+			 stmt.executeUpdate();
+			 } catch (SQLException e) {
+				 System.out.println("DbUpdateBranchMan Failure2");
+			 e.printStackTrace();
+			 }
+		 } catch (ClassNotFoundException e) {
+			 System.out.println("DbUpdateBranchMan ClassNotFound Failure2");
+		 e.printStackTrace();
+		 }
+	}
+	public void updateBranchTransportMan(int branch, int id) {
+		try {
+			 Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+			 try (Connection conn = DriverManager.getConnection(ConstsDbManageElect.CONN_STR);
+					 
+				CallableStatement stmt = conn.prepareCall(ConstsDbManageElect.SQL_UPDATE_BRANCHTRANSPORTREP)) {
+			int i = 1;
+	
+			stmt.setInt(i++, id);
+			stmt.setInt(i++, branch);
+	
+			 stmt.executeUpdate();
+			 } catch (SQLException e) {
+				 System.out.println("DbUpdateBranchTransportMan Failure2");
+			 e.printStackTrace();
+			 }
+		 } catch (ClassNotFoundException e) {
+			 System.out.println("DbUpdateBranchTransportMan ClassNotFound Failure2");
+		 e.printStackTrace();
+		 }
+	}
 }

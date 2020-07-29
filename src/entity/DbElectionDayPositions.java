@@ -400,7 +400,7 @@ public class DbElectionDayPositions {
 			 try (Connection conn = DriverManager.getConnection(ConstsDbManageElect.CONN_STR);
 					 
 				CallableStatement stmt = conn.prepareCall("INSERT INTO TblElectionDayPosition ( StartHour, EndHour, Role, BallotNum, EmpID1, EmpID2 )"
-						+ " VALUES ("+startHour+"," +endHour+","+"Rep"+","+ ballotNum+","+ employee1+","+ employee2+");")) {
+						+ " VALUES ("+startHour+"," +endHour+","+"\'Rep\'"+","+ ballotNum+","+ employee1+","+ employee2+");")) {
 
 		 stmt.executeUpdate();
 		 } catch (SQLException e) {
@@ -417,8 +417,8 @@ public class DbElectionDayPositions {
 			 Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			 try (Connection conn = DriverManager.getConnection(ConstsDbManageElect.CONN_STR);
 					 
-				CallableStatement stmt = conn.prepareCall("INSERT INTO TblElectionDayPosition ( StartHour, EndHour, Role, BallotNum, EmpID1, EmpID2 )"
-						+ " VALUES ("+startHour+","+ endHour+","+ role+", null, "+employee1+", null);")) {
+				CallableStatement stmt = conn.prepareCall("INSERT INTO TblElectionDayPosition ( StartHour, EndHour, Role, EmpID1 )"
+						+ " VALUES ("+startHour+","+ endHour+","+ "\'"+role+"\'"+", "+employee1+");")) {
 
 				 stmt.executeUpdate();
 				 } catch (SQLException e) {

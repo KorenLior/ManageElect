@@ -89,6 +89,13 @@ public class BdrElectorBook extends JFrame {
 		});
 		mnNewMenu.add(mntmEmployees);
 		JMenuItem mntmSystem = new JMenuItem("System Management");
+		mntmSystem.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				appEngine.bdrSystem();
+			}
+		});
 		mnNewMenu.add(mntmSystem);
 		
 		contentPane = new JPanel();

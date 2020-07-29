@@ -169,7 +169,20 @@ public class CtrlElectionDayPosition {
 			if (!emp.isCar()) {return false;} /*dosnt own car*/
 		}
 		if (role=="Rep") {/*Ballot Rep*/
-			if (employee2==0) {return false;}
+			if ((new DbEmployee()).getEmployee(employee2)==null) {return false;}
+			DbElectionDayPositions dbElectionDayPositions = new DbElectionDayPositions();
+			ArrayList<ElectionDayPosition> positions2 = dbElectionDayPositions.getPositionsEmployee(employee2);
+			for (ElectionDayPosition position:positions2) {
+				if ((startHour<position.getEndHour()) && (startHour>=position.getStartHour())) {
+					return false;
+				}
+				if ((endHour<position.getEndHour()) && (endHour>=position.getStartHour())) {
+					return false;
+				}
+				if ((startHour<position.getStartHour()) && (endHour>position.getEndHour())) {
+					return false;
+				}
+			}
 		}
 		if (startHour>=endHour) {return false;}
 		DbElectionDayPositions dbElectionDayPositions = new DbElectionDayPositions();
@@ -181,16 +194,8 @@ public class CtrlElectionDayPosition {
 			if ((endHour<position.getEndHour()) && (endHour>=position.getStartHour())) {
 				return false;
 			}
-		}
-		if (employee2!=0) {
-			ArrayList<ElectionDayPosition> positions2 = dbElectionDayPositions.getPositionsEmployee(employee2);
-			for (ElectionDayPosition position:positions2) {
-				if ((startHour<position.getEndHour()) && (startHour>=position.getStartHour())) {
-					return false;
-				}
-				if ((endHour<position.getEndHour()) && (endHour>=position.getStartHour())) {
-					return false;
-				}
+			if ((startHour<position.getStartHour()) && (endHour>position.getEndHour())) {
+				return false;
 			}
 		}
 		

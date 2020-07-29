@@ -129,4 +129,31 @@ public class DbEmployee {
 		 e.printStackTrace();
 		 }
 	}
+
+	public void updateEmployee(int id, String birthDate, String gender, String nationality, boolean car, int status,
+			int kids, int branch) {
+		 try {
+			 Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+			 try (Connection conn = DriverManager.getConnection(ConstsDbManageElect.CONN_STR);
+					 
+				CallableStatement stmt = conn.prepareCall(ConstsDbManageElect.SQL_UPDATE_EMPLOYEE)) {	
+		int i = 1;
+		stmt.setString(i++, birthDate);
+		stmt.setString(i++, gender);
+		stmt.setString(i++, nationality);
+		stmt.setBoolean(i++, car);
+		stmt.setInt(i++, status);
+		stmt.setInt(i++, kids);
+		stmt.setInt(i++, branch);
+		stmt.setInt(i++, id);
+		stmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("updateEmployee Failure2");
+			e.printStackTrace();
+			}
+		} catch (ClassNotFoundException e) {
+			System.out.println("updateEmployee ClassNotFound Failure2");
+			e.printStackTrace();
+		}
+	}
 }

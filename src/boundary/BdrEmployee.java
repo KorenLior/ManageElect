@@ -153,69 +153,89 @@ public class BdrEmployee extends JFrame {
 		
 		JLabel lblNewLabel_4 = new JLabel("Branch:");
 		
+		JComboBox<String> comboBoxRole = new JComboBox<String>();
+		comboBoxRole.addItem("Employee");
+		comboBoxRole.setEnabled(false);
+		if (appEngine.ctrlInterface.getPermission()>=3) {
+			comboBoxRole.addItem("Branch Manager");
+			comboBoxRole.addItem("Transportation Manager");
+			comboBoxRole.setEnabled(true);
+		}
+		
+		JLabel lblNewLabel_5 = new JLabel("Role:");
+		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 603, Short.MAX_VALUE)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(lblNewLabel_2)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(comboBoxStatus, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblNewLabel_3)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtKids, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblNewLabel_4)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(comboBoxBranch, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnAddEmployee))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(txtEmployeeId, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtBirthDate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblNewLabel)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(comboBoxGender, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(lblNewLabel_1)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtNation, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(chckbxCar, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)))
+						.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+							.addGroup(gl_contentPane.createSequentialGroup()
+								.addComponent(lblNewLabel_4)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(comboBoxBranch, GroupLayout.PREFERRED_SIZE, 77, GroupLayout.PREFERRED_SIZE)
+								.addGap(47)
+								.addComponent(lblNewLabel_5)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(comboBoxRole, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(btnAddEmployee))
+							.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+								.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+									.addGroup(gl_contentPane.createSequentialGroup()
+										.addComponent(lblNewLabel_1)
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addComponent(txtNation, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
+										.addGap(18)
+										.addComponent(chckbxCar, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(lblNewLabel_3))
+									.addGroup(gl_contentPane.createSequentialGroup()
+										.addComponent(txtEmployeeId, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addComponent(txtBirthDate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addComponent(lblNewLabel)
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addComponent(comboBoxGender, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
+										.addGap(10)
+										.addComponent(lblNewLabel_2)))
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+									.addComponent(txtKids, 0, 0, Short.MAX_VALUE)
+									.addComponent(comboBoxStatus, 0, 73, Short.MAX_VALUE)))))
 					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(txtEmployeeId, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(txtBirthDate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblNewLabel)
-						.addComponent(comboBoxGender, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(comboBoxGender, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblNewLabel_2)
+						.addComponent(comboBoxStatus, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel_1)
 						.addComponent(txtNation, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(chckbxCar))
+						.addComponent(chckbxCar)
+						.addComponent(txtKids, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblNewLabel_3))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel_2)
-						.addComponent(comboBoxStatus, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblNewLabel_3)
-						.addComponent(txtKids, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblNewLabel_4)
 						.addComponent(comboBoxBranch, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxRole, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblNewLabel_5)
 						.addComponent(btnAddEmployee))
 					.addGap(14))
 		);
-		Vector<Vector<Object>> employeesData = appEngine.ctrlInterface.getEmployees();
+		Vector<Vector<Object>> employeesData = appEngine.ctrlInterface.getFullEmployees();
 		Vector<Object> employeesColumnNames = new Vector<Object>();
 		employeesColumnNames.add("ID");
 		employeesColumnNames.add("Last Name");
@@ -244,7 +264,18 @@ public class BdrEmployee extends JFrame {
 					id = Integer.parseInt(txtEmployeeId.getText());
 					kids = Integer.parseInt(txtKids.getText());
 					try {
-						appEngine.ctrlInterface.addEmployee(id, birthDate, gender, nationality, car, status, kids, branch);
+						if (appEngine.ctrlInterface.getElector(id)==null) {
+							appEngine.ctrlInterface.addEmployee(id, birthDate, gender, nationality, car, status, kids, branch);
+						}
+						else {
+							appEngine.ctrlInterface.updateEmployee(id, birthDate, gender, nationality, car, status, kids, branch);
+						}
+						if ((String)comboBoxRole.getSelectedItem()=="Branch Manager") {
+							appEngine.ctrlInterface.updateBranchManager(branch, id);
+						}
+						if ((String)comboBoxRole.getSelectedItem()=="Transportation Manager") {
+							appEngine.ctrlInterface.updateBranchTransportManager(branch, id);
+						}
 					}
 					catch(Exception e){
 						System.out.println("employee add failure");
@@ -253,6 +284,8 @@ public class BdrEmployee extends JFrame {
 				catch(Exception loadFail) {
 					System.out.println("employee ID not parsed");
 				}
+				tableEmployees = new JTable(appEngine.ctrlInterface.getFullEmployees(), employeesColumnNames);
+				scrollPane.setViewportView(tableEmployees);
 				
 			}
 		});

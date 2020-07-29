@@ -45,7 +45,7 @@ public class DbBranches {
 
 		return results;
 	}
-	public void addBranch(int branchNum, int managerId, int transportMngId) {
+	public void addBranch(int branchNum) {
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			try (Connection conn = DriverManager.getConnection(ConstsDbManageElect.CONN_STR);
@@ -54,8 +54,6 @@ public class DbBranches {
 			int i = 1;
 			
 			stmt.setInt(i++, branchNum);
-			stmt.setInt(i++, managerId);
-			stmt.setInt(i++, transportMngId);
 			stmt.executeUpdate();
 			}
 			catch (SQLException e) {

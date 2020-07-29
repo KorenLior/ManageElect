@@ -30,8 +30,6 @@ public class BdrSystemManage extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtBranch;
-	private JTextField txtManager;
-	private JTextField txtTransportMng;
 	private JTable tableBranch;
 	private JTable tableBallot;
 
@@ -55,7 +53,7 @@ public class BdrSystemManage extends JFrame {
 	 * Create the frame.
 	 */
 	public BdrSystemManage() {
-		setBounds(100, 100, 485, 443);
+		setBounds(100, 100, 606, 469);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -101,17 +99,7 @@ public class BdrSystemManage extends JFrame {
 		txtBranch = new JTextField();
 		txtBranch.setColumns(10);
 		
-		txtManager = new JTextField();
-		txtManager.setColumns(10);
-		
-		txtTransportMng = new JTextField();
-		txtTransportMng.setColumns(10);
-		
 		JLabel lblNewLabel = new JLabel("Branch");
-		
-		JLabel lblNewLabel_1 = new JLabel("Branch Manager ID");
-		
-		JLabel lblNewLabel_2 = new JLabel("Transportation Manager ID");
 		
 		JScrollPane scrollPane = new JScrollPane();
 		Vector<Object> branchColumnNames = new Vector<Object>();
@@ -143,9 +131,7 @@ public class BdrSystemManage extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					int branchNum = Integer.parseInt(txtBranch.getText());
-					int managerId = Integer.parseInt(txtManager.getText());
-					int transportMngId = Integer.parseInt(txtTransportMng.getText());
-					appEngine.ctrlInterface.insertBranch(branchNum, managerId, transportMngId);
+					appEngine.ctrlInterface.insertBranch(branchNum);
 					
 					
 					ArrayList<Integer> branches = appEngine.ctrlInterface.getBranchList();
@@ -189,78 +175,58 @@ public class BdrSystemManage extends JFrame {
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-								.addComponent(lblNewLabel_1)
-								.addComponent(lblNewLabel_2)
-								.addComponent(lblNewLabel))
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(txtManager, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(txtBranch, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(txtTransportMng, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-						.addComponent(btnNewBranch))
-					.addPreferredGap(ComponentPlacement.RELATED)
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-						.addComponent(lblNewLabel_4)
-						.addComponent(lblNewLabel_3))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
-						.addComponent(btnBallot, 0, 0, Short.MAX_VALUE)
-						.addComponent(comboBoxBranch, Alignment.LEADING, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(comboBoxBallot, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE))
-					.addGap(113))
-				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-					.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 457, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
-				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
-					.addContainerGap())
-				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-					.addComponent(btnImportData)
+						.addComponent(scrollPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
+						.addComponent(btnImportData, Alignment.LEADING)
+						.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+							.addContainerGap()
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblNewLabel)
+								.addComponent(lblNewLabel_3))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(txtBranch, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(btnNewBranch))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addComponent(comboBoxBallot, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(lblNewLabel_4)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(comboBoxBranch, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(btnBallot))))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(2)
+							.addComponent(scrollPane_1, GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)))
 					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addComponent(btnImportData)
-					.addPreferredGap(ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-							.addGroup(gl_contentPane.createSequentialGroup()
-								.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-									.addComponent(comboBoxBallot, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addComponent(lblNewLabel_3))
-								.addGap(8)
-								.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-									.addComponent(comboBoxBranch, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addComponent(lblNewLabel_4)
-									.addComponent(txtTransportMng, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-							.addGroup(gl_contentPane.createSequentialGroup()
-								.addGap(54)
-								.addComponent(btnBallot)))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(txtBranch, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblNewLabel))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(txtManager, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblNewLabel_1))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblNewLabel_2)
-							.addGap(7)
-							.addComponent(btnNewBranch)
-							.addPreferredGap(ComponentPlacement.RELATED)))
-					.addGap(5))
+					.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblNewLabel)
+						.addComponent(txtBranch, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnNewBranch))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+							.addComponent(comboBoxBranch, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(btnBallot))
+						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+							.addComponent(lblNewLabel_3)
+							.addComponent(comboBoxBallot, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(lblNewLabel_4)))
+					.addContainerGap())
 		);
 		
 		tableBallot = new JTable(appEngine.ctrlInterface.getBallotTable(),ballotColumnNames);

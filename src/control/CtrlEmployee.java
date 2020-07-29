@@ -8,12 +8,16 @@ import entity.DbEmployee;
 import entity.Employee;
 
 public class CtrlEmployee {
-	
+	public void updateEmployee(int id, String birthDate, String gender, String nationality, boolean car, int status,
+			int kids, int branch) {
+		DbEmployee dbEmployee = new DbEmployee();
+		dbEmployee.updateEmployee(id, birthDate, gender, nationality, car, status, kids, branch);
+	}
 	public void addEmployee(int id, String birthDate, String gender, String nation, boolean car, int status, int kids, int branchNum) {
 		DbEmployee dbEmployee = new DbEmployee();
 		dbEmployee.addEmployee(id, birthDate, gender, nation, car, status, kids, branchNum);
 	}
-	public Vector<Vector<Object>> getEmploeeVec(){
+	public Vector<Vector<Object>> getEmployeeVec(){
 		Vector<Vector<Object>> results = new Vector<Vector<Object>>();
 		DbEmployee dbGetEmployeeList = new DbEmployee();
 		ArrayList<Employee> employees = dbGetEmployeeList.getEmployees();
@@ -27,7 +31,7 @@ public class CtrlEmployee {
 		}
 		return results;
 	}
-	public Vector<Vector<Object>> getEmploeeVec(int branchNum){
+	public Vector<Vector<Object>> getEmployeeVec(int branchNum){
 		Vector<Vector<Object>> results = new Vector<Vector<Object>>();
 		DbEmployee dbGetEmployeeList = new DbEmployee();
 		ArrayList<Employee> employees = dbGetEmployeeList.getEmployees(branchNum);
@@ -41,7 +45,7 @@ public class CtrlEmployee {
 		}
 		return results;
 	}
-	public Vector<Vector<Object>> getFullEmploeeVec(int branchNum) {
+	public Vector<Vector<Object>> getFullEmployeeVec(int branchNum) {
 		Vector<Vector<Object>> results = new Vector<Vector<Object>>();
 		DbEmployee dbGetEmployeeList = new DbEmployee();
 		ArrayList<Employee> employees = dbGetEmployeeList.getEmployees(branchNum);
@@ -69,7 +73,7 @@ public class CtrlEmployee {
 		}
 		return results;
 	}
-	public Vector<Vector<Object>> getFullEmploeeVec() {
+	public Vector<Vector<Object>> getFullEmployeeVec() {
 		Vector<Vector<Object>> results = new Vector<Vector<Object>>();
 		DbEmployee dbGetEmployeeList = new DbEmployee();
 		ArrayList<Employee> employees = dbGetEmployeeList.getEmployees();
@@ -97,4 +101,5 @@ public class CtrlEmployee {
 		}
 		return results;
 	}
+	
 }
